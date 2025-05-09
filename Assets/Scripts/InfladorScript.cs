@@ -38,6 +38,7 @@ public class InfladorScript : MonoBehaviour
         else if (movementInput.y < 0 && currentTargetPosition != position2.position)
         {
             currentTargetPosition = position2.position; // Set target to position2
+            infladorManager.PumpBall();
         }
 
         // Teleport the GameObject to the target position
