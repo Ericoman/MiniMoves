@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 405126931}
   - component: {fileID: 405126930}
   - component: {fileID: 405126932}
+  - component: {fileID: 405126933}
   m_Layer: 0
   m_Name: DeviceInputManager
   m_TagString: Untagged
@@ -286,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f336d472ff1324a8d63013261cbdb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 6977434812611745635}
+  debugText: {fileID: 0}
 --- !u!4 &405126931
 Transform:
   m_ObjectHideFlags: 0
@@ -388,6 +389,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &405126933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405126929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec3f002410236f247aaa09e978a92aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listenPort: 9000
 --- !u!1 &561966178
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +678,10 @@ PrefabInstance:
     - target: {fileID: 1979241216867499643, guid: 7500bb522978bf846ba7bd6737aa8446, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321754544640437745, guid: 7500bb522978bf846ba7bd6737aa8446, type: 3}
+      propertyPath: threshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4321754544640437745, guid: 7500bb522978bf846ba7bd6737aa8446, type: 3}
       propertyPath: inputManager

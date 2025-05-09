@@ -1,3 +1,4 @@
+using System;
 using System.Net.Sockets;
 using System.Text;
 using TMPro;
@@ -5,6 +6,23 @@ using UnityEngine;
 
 public class MobileInputSender : MonoBehaviour
 {
+    [Serializable]
+    public class UDPMessage
+    {
+        public enum EMessageType
+        {
+            None = 0,
+            LinearAcceleration,
+        }
+        public EMessageType messageType;
+        public Vector3 inputVector;
+
+        public UDPMessage(EMessageType _messageType, Vector3 _inputVector)
+        {
+            messageType = _messageType;
+            inputVector = _inputVector;
+        }
+    }
     private UdpClient udpClient;
     public string targetIP = "192.168.105.175";
     public TextMeshProUGUI debugText = null;
@@ -18,22 +36,23 @@ public class MobileInputSender : MonoBehaviour
 
     void Update()
     {
-        // Example: send a message when the screen is touched
-        if (Input.touchCount > 0)
-        {
-            debugText.text = "Touch at: " + Input.GetTouch(0).position;
-            string message = "Touch at: " + Input.GetTouch(0).position;
-            SendUdpMessage(message);
-        }
+        // // Example: send a message when the screen is touched
+        // if (Input.touchCount > 0)
+        // {
+        //     debugText.text = "Touch at: " + Input.GetTouch(0).position;
+        //     string message = "Touch at: " + Input.GetTouch(0).position;
+        //     SendUdpMessage(message);
+        // }
     }
 
-    void SendUdpMessage(string message)
+    public void SendUdpMessage(UDPMessage message)
     {
         try
         {
-            byte[] data = Encoding.UTF8.GetBytes(message);
+            string messageString = JsonUtility.ToJson(message);
+            byte[] data = Encoding.UTF8.GetBytes(messageString);
             udpClient.Send(data, data.Length, targetIP, targetPort);
-            debugText.text = "UDP Sent.";
+            debugText.text = "UDP Sent: " + message;
         }
         catch (SocketException ex)
         {

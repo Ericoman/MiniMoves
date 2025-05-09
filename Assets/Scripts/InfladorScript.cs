@@ -1,40 +1,34 @@
 using UnityEngine;
 
-public class InfladorScript : MonoBehaviour
+public class InfladorScript : BaseInputManager
 {
-    
-    public InputManager inputManager;
-
     public Transform position1;
     public Transform position2;
-
+    [SerializeField]
+    private float threshold = 0.1f;
     private Vector3 currentTargetPosition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         currentTargetPosition = position1.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void InputManagerOnMovementInputEvent(Vector3 movement)
     {
-        // Ensure the InputManager is assigned
-        if (inputManager == null)
-        {
-            Debug.LogWarning("InputManager has not been assigned to InfladorScript.");
-            return;
-        }
+        Move(movement);
+    }
 
-        // Get the movement input
-        Vector2 movementInput = inputManager.movementInput;
+    void Move(Vector3 movementInput)
+    {
 
         // Check for "Up" input (positive Y)
-        if (movementInput.y > 0 && currentTargetPosition != position1.position)
+        if (movementInput.y > threshold && currentTargetPosition != position1.position)
         {
             currentTargetPosition = position1.position; // Set target to position1
         }
         // Check for "Down" input (negative Y)
-        else if (movementInput.y < 0 && currentTargetPosition != position2.position)
+        else if (movementInput.y < -threshold && currentTargetPosition != position2.position)
         {
             currentTargetPosition = position2.position; // Set target to position2
         }
