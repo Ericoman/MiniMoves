@@ -4,7 +4,8 @@ public class InfladorScript : MonoBehaviour
 {
     
     public InputManager inputManager;
-
+    public InfladorMinigameManager infladorManager;
+    
     public Transform position1;
     public Transform position2;
 
