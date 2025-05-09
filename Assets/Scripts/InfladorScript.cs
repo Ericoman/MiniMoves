@@ -4,6 +4,8 @@ public class InfladorScript : BaseInputManager
 {
     public Transform position1;
     public Transform position2;
+    [SerializeField] 
+    private InfladorMinigameManager infladorManager;
     [SerializeField]
     private float threshold = 0.1f;
     private Vector3 currentTargetPosition;
@@ -31,6 +33,7 @@ public class InfladorScript : BaseInputManager
         else if (movementInput.y < -threshold && currentTargetPosition != position2.position)
         {
             currentTargetPosition = position2.position; // Set target to position2
+            infladorManager.PumpBall();
         }
 
         // Teleport the GameObject to the target position
