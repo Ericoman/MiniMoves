@@ -1,21 +1,27 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : MonoBehaviour
 {
     public Image titleImage, background;
-    public GameObject menu, selectionMenu, freeModeMenu, selectSkinmenu;
+    public GameObject menu, selectionMenu, freeModeMenu, selectSkinmenu, leaderboards, scoreboard;
     public MiniGameManager minigameManager;
     public MinigameData[] minigamedata;
     private int indexActual = 0;
-    public Button prevgame, nextgame;
+    public Text scoreText;
+    
     //public Text freeModeGame;
     public Camera uselessCamera;
 
     public float fadeInTime = 0.1f;
     public float fadeOutTime = 0.1f;
     public AudioSource click, back;
+
+
+    private const string SCORE_KEY = "score_table";
     void Start()
     {
         // Opcional: iniciar con fade in
@@ -53,6 +59,10 @@ public class UIManager : MonoBehaviour
         return minigamedata[indexActual];
     }
 
+    public void ShowLeaderboards(string name, int score)
+    {
+
+    }
     public IEnumerator FadeIn()
     {
         float elapsed = 0f;
@@ -92,6 +102,7 @@ public class UIManager : MonoBehaviour
     public void PlayButton()
     {
         click.Play();
+        
         menu.SetActive(false);
         selectionMenu.SetActive(true);
     }
@@ -130,12 +141,14 @@ public class UIManager : MonoBehaviour
     }
     public void BackToMainMenu()
     {
+        scoreboard.SetActive(true);
         back.Play();
         selectionMenu.SetActive(false);
         menu.SetActive(true);
     }
     public void BackToSelectionMenu()
     {
+        scoreboard.SetActive(false);
         back.Play();
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
@@ -149,4 +162,81 @@ public class UIManager : MonoBehaviour
         freeModeMenu.SetActive(false);
         //minigameManager.GetComponent<MiniGameManager>().PlaySelectedMiniGame(getSelectedMinigame());
     }
+    public void showLeaderboards()
+    {
+        selectionMenu.SetActive(false);
+        scoreboard.SetActive(true);
+        showScores();
+    }
+
+    public void showScores()
+    {
+        ScoreList scoreList = LoadScores();
+        string display = "RANKING\n";
+
+        for (int i = 0; i < scoreList.scores.Count; i++)
+        {
+            ScoreEntry entry = scoreList.scores[i];
+            display += $"{i + 1}. {entry.playerName} - {entry.score}\n";
+        }
+
+        scoreText.text = display;
+    }
+
+
+    public void AddNewScore(string name, int score)
+    {
+        leaderboards.SetActive(false);
+        scoreboard.SetActive(true);
+        // Cargar tabla actual
+        ScoreList scoreList = LoadScores();
+
+        // Agregar nueva entrada
+        ScoreEntry newEntry = new ScoreEntry { playerName = name, score = score };
+        scoreList.scores.Add(newEntry);
+
+        // Ordenar de mayor a menor
+        scoreList.scores.Sort((a, b) => b.score.CompareTo(a.score));
+
+        // Limitar a 10 entradas
+        if (scoreList.scores.Count > 10)
+            scoreList.scores.RemoveAt(scoreList.scores.Count - 1);
+
+        // Guardar de nuevo
+        string json = JsonUtility.ToJson(scoreList);
+        PlayerPrefs.SetString(SCORE_KEY, json);
+        PlayerPrefs.Save();
+
+        showScores();
+    }
+
+    public ScoreList LoadScores()
+    {
+        if (PlayerPrefs.HasKey(SCORE_KEY))
+        {
+            string json = PlayerPrefs.GetString(SCORE_KEY);
+            return JsonUtility.FromJson<ScoreList>(json);
+        }
+        else
+        {
+            return new ScoreList();
+        }
+    }
+
+
 }
+
+[System.Serializable]
+public class ScoreEntry
+{
+    public string playerName;
+    public int score;
+}
+
+[System.Serializable]
+public class ScoreList
+{
+    public List<ScoreEntry> scores = new List<ScoreEntry>();
+}
+
+
