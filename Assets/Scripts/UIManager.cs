@@ -201,6 +201,10 @@ public class UIManager : MonoBehaviour
         scoreboard.SetActive(true);
         // Cargar tabla actual
         ScoreList scoreList = LoadScores();
+        if (name == "")
+        {
+            name = "Default";
+        }
 
         // Agregar nueva entrada
         ScoreEntry newEntry = new ScoreEntry { playerName = name, score = score };
