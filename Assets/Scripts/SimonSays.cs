@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class SimonGame : BaseInputManager
+public class SimonGame : MonoBehaviour
 {
     [Header("Botones")]
     public GameObject[] normalButtons;    
@@ -25,56 +27,57 @@ public class SimonGame : BaseInputManager
     public float delayDecrease = 0.05f;
     private float currentDelay;
 
-    [SerializeField] 
-    private float thresholdX = 2f;
     [SerializeField]
-    private float thresholdY = 2f;
-
+    SingleFlickAccelerationDetector flickDetector;
     //[SerializeField] private float inputCooldown = 0.6f;
-    bool bCanPress = true;
 
     void Start()
     {
         currentDelay = startDelay;
         AddToPattern();
         StartCoroutine(ShowPattern());
+        if (flickDetector == null)
+        {
+            flickDetector = GetComponent<SingleFlickAccelerationDetector>();
+        }
+        flickDetector.FlickEvent += FlickDetectorOnFlickEvent;
     }
 
-    protected override void InputManagerOnMovementInputEvent(Vector3 movement)
+    private void FlickDetectorOnFlickEvent(Vector3 movement)
     {
-        if (!isPlayerTurn || !bCanPress) return;
-        if (movement.x > thresholdX && Mathf.Abs(movement.y) <= thresholdY)
+        if (movement.x !=0 && movement.y == 0)
         {
-            CheckPattern(0);
-            Debug.Log("Izq");
+            if (movement.x < 0)
+            {
+                CheckPattern(0);
+            }
+            else
+            {
+                CheckPattern(1);
+            }
         }
-        else if (movement.x < -thresholdX && Mathf.Abs(movement.y) <= thresholdY)
+        else if (movement.y !=0 && movement.x == 0)
         {
-            CheckPattern(1);
-            Debug.Log("Derecha");
-        }
-        else if (movement.y < -thresholdY && Mathf.Abs(movement.x) <= thresholdX)
-        {
-            CheckPattern(2);
-            Debug.Log("Arriba");
-        }
-        else if (movement.y > thresholdY && Mathf.Abs(movement.x) <= thresholdX)
-        {
-            CheckPattern(3);
-            Debug.Log("Abajo");
+            if (movement.y < 0)
+            {
+                CheckPattern(2);
+            }
+            else
+            {
+                CheckPattern(3);
+            }
         }
     }
 
     IEnumerator InputCooldown(int index)
     {
-        bCanPress = false;
         ActivateButton(index);
-        yield return new WaitForSeconds(currentDelay);
+        yield return new WaitForSeconds(flickDetector.GetCooldownTime());
         DeactivateButton(index);
-        bCanPress = true;
     }
     void CheckPattern(int patternNumber)
     {
+        if (!isPlayerTurn) return;
         StartCoroutine(InputCooldown(patternNumber));
         if (patternNumber == pattern[currentStep])
         {
@@ -161,4 +164,11 @@ public class SimonGame : BaseInputManager
         StartCoroutine(ShowPattern());
     }
 
+    private void OnDestroy()
+    {
+        if (flickDetector != null)
+        {
+            flickDetector.FlickEvent -= FlickDetectorOnFlickEvent;
+        }
+    }
 }

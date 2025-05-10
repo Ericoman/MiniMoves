@@ -1357,8 +1357,10 @@ MonoBehaviour:
   currentWaypoint: {fileID: 9010215375350031525}
   idWaypoint: 2
   moving: 0
-  thresholdX: 2
-  thresholdY: 1
+  thresholdX: 0.5
+  thresholdY: 0.5
+  accelerationThreshold: 1.5
+  cooldown: 0.1
 --- !u!1001 &3218203210697885324
 PrefabInstance:
   m_ObjectHideFlags: 0
