@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
     {
         selectionMenu.SetActive(false);
         background.enabled = false;
-        minigameManager.GetComponent<MiniGameManager>().uselessCamera.enabled = false;
+        minigameManager.GetComponent<MiniGameManager>().uselessCamera.gameObject.SetActive(false);
         minigameManager.GetComponent<MiniGameManager>().LoadMinijuego();
     }
     public void FreeModeButton()
