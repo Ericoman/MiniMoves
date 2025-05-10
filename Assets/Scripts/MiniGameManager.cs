@@ -12,6 +12,7 @@ public class MiniGameManager : MonoBehaviour
     public GameObject miniGameInstance;
     public Canvas gameCanvas;
     
+    
     public float minigameDuration = 30f;
     private static MiniGameManager _instance;
     public static MiniGameManager Instance => _instance;
@@ -20,7 +21,8 @@ public class MiniGameManager : MonoBehaviour
 
     public Leaderboard resultsScreen;
     public int gamePoints;
-    
+    public AudioSource tutorialSound;
+
     private void Awake()
     {
         if (_instance == null)
@@ -97,6 +99,7 @@ public class MiniGameManager : MonoBehaviour
                 // Instantiate the tutorial panel
                 if (selectedGame.TutorialPanel != null)
                 {
+                    tutorialSound.Play();
                     GameObject tutorialPanelInstance = Instantiate(selectedGame.TutorialPanel);
 
                     // Ensure the tutorial panel is part of the Canvas hierarchy

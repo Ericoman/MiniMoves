@@ -1110,21 +1110,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalButtons:
-  - {fileID: 4650137934436733868}
-  - {fileID: 6031682587052183561}
   - {fileID: 4445746233161914393}
   - {fileID: 333590927648113674}
+  - {fileID: 4650137934436733868}
+  - {fileID: 6031682587052183561}
   activeButtons:
-  - {fileID: 666696970334592910}
-  - {fileID: 2865935404724114953}
   - {fileID: 473357063836832052}
   - {fileID: 7510708845237778696}
+  - {fileID: 666696970334592910}
+  - {fileID: 2865935404724114953}
   playerTurnText: {fileID: 4956745916956858234}
   playerFailText: {fileID: 9213323586407127142}
   inputKeys: 11010000120100001401000013010000
   startDelay: 1
   minDelay: 0.3
   delayDecrease: 0.05
+  thresholdX: 2
+  thresholdY: 2
 --- !u!1 &7510708845237778696
 GameObject:
   m_ObjectHideFlags: 0

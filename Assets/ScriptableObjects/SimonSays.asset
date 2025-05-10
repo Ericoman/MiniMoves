@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6341681fbaa11c468555d3d9aed7dc6, type: 3}
+  m_Name: SimonSays
+  m_EditorClassIdentifier: 
+  minigameID: SimonSays
+  miniGamePrefab: {fileID: 2993397003935317779, guid: 1fc2fd1f801e6de4481d34b59303588f, type: 3}
+  tutorialPanel: {fileID: 3498594972370910775, guid: 43e79e76b73faaf4f8a34fcec189781e, type: 3}

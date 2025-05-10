@@ -76,7 +76,7 @@ public class GameManagerImitate : MonoBehaviour
 
     public void CheckPose(int direction)
     {
-        if (directionPose==direction)
+        if (direction < poses.Length && directionPose==direction)
         {
             hitPose.Play();
             StartCoroutine(ChangeText("Good"));
