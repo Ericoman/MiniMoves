@@ -931,7 +931,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619881447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1060640488}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: CambiarMinijuego
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &774208312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1417,7 @@ MonoBehaviour:
   selectSkinmenu: {fileID: 1633989953}
   minigameManager: {fileID: 1931054316}
   minigamedata:
+  - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   prevgame: {fileID: 619881449}
   nextgame: {fileID: 1652121211}
@@ -2202,7 +2215,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1652121212}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1060640488}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: CambiarMinijuego
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1652121212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2811,6 +2836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameData:
   - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
+  - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
   miniGameInstance: {fileID: 0}
   uselessCamera: {fileID: 1687634250}
 --- !u!4 &1931054318
