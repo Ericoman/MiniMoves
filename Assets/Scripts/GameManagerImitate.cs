@@ -12,6 +12,8 @@ public class GameManagerImitate : MonoBehaviour
     public int turn;
     public bool posing = false;
     
+    public int minigamePoints = 5;
+    
     public static GameManagerImitate Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -70,10 +72,12 @@ public class GameManagerImitate : MonoBehaviour
         if (directionPose==direction)
         {
             StartCoroutine(ChangeText("Good"));
+            MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         else
         {
             StartCoroutine(ChangeText("Fail"));
+            MiniGameManager.Instance.RemoveGamePoints(minigamePoints);
         }
     }
 

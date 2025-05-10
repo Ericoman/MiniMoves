@@ -11,7 +11,7 @@ public class InfladorMinigameManager : MonoBehaviour
     public float scaleFactor = 0.2f;
     public float timeBetweenBalls = 1.0f;
     public bool ballInStation = false;
-    public int minigamePoints = 10;
+    public int minigamePoints = 5;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
