@@ -153,6 +153,7 @@ public class UIManager : MonoBehaviour
         scoreboard.SetActive(true);
         back.Play();
         selectionMenu.SetActive(false);
+        background.enabled = true;
         menu.SetActive(true);
     }
     public void BackToSelectionMenu()
@@ -161,6 +162,7 @@ public class UIManager : MonoBehaviour
         back.Play();
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
+        leaderboards.SetActive(false);
         
         selectionMenu.SetActive(true);
     }

@@ -23,6 +23,8 @@ public class MiniGameManager : MonoBehaviour
     public int gamePoints;
     public AudioSource tutorialSound;
 
+    public GameObject menuCamera;
+    
     private void Awake()
     {
         if (_instance == null)
@@ -56,6 +58,11 @@ public class MiniGameManager : MonoBehaviour
         if (resultsScreen == null)
         {
             resultsScreen = gameCanvas.GetComponentInChildren<Leaderboard>(true);
+        }
+        
+        if (menuCamera == null)
+        {
+            menuCamera = GameObject.FindWithTag("SceneCamera");
         }
     }
 
@@ -99,6 +106,7 @@ public class MiniGameManager : MonoBehaviour
                 // Instantiate the tutorial panel
                 if (selectedGame.TutorialPanel != null)
                 {
+                    menuCamera.SetActive(true);
                     tutorialSound.Play();
                     GameObject tutorialPanelInstance = Instantiate(selectedGame.TutorialPanel);
 
@@ -131,13 +139,16 @@ public class MiniGameManager : MonoBehaviour
                 {
                     Debug.LogWarning("Tutorial panel is missing for: " + selectedGame.MinigameID);
                 }
-
+                
+                menuCamera.SetActive(false);
                 // Instantiate the minigame and start the 30-second timer
                 PlaySelectedMiniGame(selectedGame);
+                
             }
             else
             {
                 Debug.LogWarning("No unused minigames available to select.");
+                menuCamera.SetActive(true);
                 resultsScreen.Show(true);
             }
         }

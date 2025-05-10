@@ -497,8 +497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 383}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -14}
+  m_SizeDelta: {x: 124.6, y: 68.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206443495
 MonoBehaviour:
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -522,10 +522,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -804,7 +804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -444}
+  m_AnchoredPosition: {x: 0, y: -198}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &395874002
@@ -1740,7 +1740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &912373559
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2459,6 +2459,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
+  scoreText: {fileID: 206443495}
   uselessCamera: {fileID: 1687634250}
   fadeInTime: 0.1
   fadeOutTime: 0.1
@@ -5510,10 +5511,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   miniGameInstance: {fileID: 0}
   gameCanvas: {fileID: 1060640486}
-  minigameDuration: 20
+  minigameDuration: 3
   resultsScreen: {fileID: 2122360915}
   gamePoints: 0
   tutorialSound: {fileID: 1931054320}
+  menuCamera: {fileID: 1687634247}
 --- !u!4 &1931054318
 Transform:
   m_ObjectHideFlags: 0
@@ -5968,8 +5970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1987843436}
-  inputfield: {fileID: 0}
-  uimanager: {fileID: 0}
+  inputfield: {fileID: 596534872}
+  uimanager: {fileID: 1060640488}
 --- !u!1 &2139334106
 GameObject:
   m_ObjectHideFlags: 0
