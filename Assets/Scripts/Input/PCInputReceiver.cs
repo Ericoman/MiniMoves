@@ -13,7 +13,21 @@ public class PCInputReceiver : MonoBehaviour
     public float damping = 0.9f;
     private Vector3 velocity;
     private Vector3 acceleration;
-    
+
+    private static PCInputReceiver _instance;
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         udpClient = new UdpClient(listenPort); // Binds to 0.0.0.0
@@ -55,6 +69,11 @@ public class PCInputReceiver : MonoBehaviour
             }
         }
         udpClient?.Close();
+    }
+
+    private void OnDestroy()
+    {
+        isListening = false;
     }
 
     void OnApplicationQuit()

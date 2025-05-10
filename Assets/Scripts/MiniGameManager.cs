@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +10,6 @@ public class MiniGameManager : MonoBehaviour
 {
     public MinigameData[] minigameData;
     public GameObject miniGameInstance;
-    public Camera uselessCamera;
     public Canvas gameCanvas;
     
     public float minigameDuration = 30f;
@@ -17,6 +18,7 @@ public class MiniGameManager : MonoBehaviour
     // Keep track of the played minigames
     private List<MinigameData> usedMinigames = new List<MinigameData>();
 
+    public Leaderboard resultsScreen;
     public int gamePoints;
     
     private void Awake()
@@ -30,11 +32,29 @@ public class MiniGameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        resultsScreen.Show(false);
+        SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
     }
 
-    void Start()
+    private void SceneManagerOnsceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       
+        if (scene.buildIndex == 0)
+        {
+            Reinitialize();
+        }
+    }
+
+    private void Reinitialize()
+    {
+        if (gameCanvas == null)
+        {
+            gameCanvas = GameObject.FindWithTag("GameCanvas").GetComponent<Canvas>();
+        }
+        if (resultsScreen == null)
+        {
+            resultsScreen = gameCanvas.GetComponentInChildren<Leaderboard>(true);
+        }
     }
 
     public void LoadMinijuego()
@@ -115,10 +135,12 @@ public class MiniGameManager : MonoBehaviour
             else
             {
                 Debug.LogWarning("No unused minigames available to select.");
+                resultsScreen.Show(true);
             }
         }
         else
         {
+            GetRandomUnusedMiniGame();
             Debug.LogWarning("No minigame data available");
         }
     }
@@ -175,6 +197,13 @@ public class MiniGameManager : MonoBehaviour
     public void RemoveGamePoints(int pointsToRemove)
     {
         gamePoints-= pointsToRemove;
+    }
+    
+    public void RestartGame()
+    {
+        usedMinigames.Clear();
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
 }

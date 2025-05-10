@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public Image titleImage, background;
     public GameObject menu, selectionMenu, freeModeMenu, selectSkinmenu;
-    public GameObject minigameManager;
+    public MiniGameManager minigameManager;
     public MinigameData[] minigamedata;
     private int indexActual = 0;
     public Button prevgame, nextgame;
@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
         // Opcional: iniciar con fade in
         StartCoroutine(FadeIn());
         ActualizarTexto();
+        minigameManager = MiniGameManager.Instance;
         //prevgame.onClick.AddListener(() => CambiarMinijuego(-1));
         //nextgame.onClick.AddListener(() => CambiarMinijuego(1));
     }
@@ -107,8 +108,8 @@ public class UIManager : MonoBehaviour
     {
         selectionMenu.SetActive(false);
         background.enabled = false;
-        minigameManager.GetComponent<MiniGameManager>().uselessCamera.enabled = false;
-        minigameManager.GetComponent<MiniGameManager>().LoadMinijuego();
+        uselessCamera.gameObject.SetActive(false);
+        minigameManager.LoadMinijuego();
     }
     public void FreeModeButton()
     {
