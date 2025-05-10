@@ -13,7 +13,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadMinijuego()
     {
-        if (minigameData != null && minigameData[0].MiniGamePrefab != null)
+        if (minigameData != null && minigameData[Random.Range(0,minigameData.Length)].MiniGamePrefab != null)
         {
             miniGameInstance = Instantiate(minigameData[0].MiniGamePrefab);
             Debug.Log("Minijuego cargado: " + minigameData[0].MinigameID);

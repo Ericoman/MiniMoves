@@ -20,11 +20,14 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         t = Time.deltaTime * 20;
         if (!moving)
         {
+            
             if (inputManager.movementInput.x > 0)
             {
+                Debug.Log("Detecta input");
                 if (idWaypoint != GameManagerBoxingTopDown.Instance.stimulus.Length)
                 {
                     idWaypoint++;
@@ -34,6 +37,7 @@ public class CharacterMovement : MonoBehaviour
             }
             else if (inputManager.movementInput.x < 0)
             {
+                Debug.Log("Detecta input");
                 if (idWaypoint != 0)
                 {
                     idWaypoint--;
@@ -43,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
             }
             if(inputManager.movementInput.y> 0)
             {
+                Debug.Log("Detecta input");
                 //if (idWaypoint == GameManagerBoxingTopDown.Instance.activatedStimulus)
                 //{
                 //    GameManagerBoxingTopDown.Instance.ChangeFeedback("Good");

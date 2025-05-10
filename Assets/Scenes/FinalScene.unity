@@ -290,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &168425232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 838481620}
   - component: {fileID: 838481619}
   m_Layer: 5
-  m_Name: Back (1)
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,7 +1229,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1060640488}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: BackToSelectionMenu
+        m_MethodName: PlaySelectedMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1377,6 +1377,7 @@ RectTransform:
   - {fileID: 1728433047}
   - {fileID: 581690043}
   - {fileID: 168425232}
+  - {fileID: 1633989954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1397,16 +1398,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleImage: {fileID: 1687011903}
+  background: {fileID: 38042793}
   menu: {fileID: 1728433046}
   selectionMenu: {fileID: 581690042}
-  freeModeMenu: {fileID: 0}
-  selectSkinmenu: {fileID: 0}
+  freeModeMenu: {fileID: 168425231}
+  selectSkinmenu: {fileID: 1633989953}
   minigameManager: {fileID: 1931054316}
   minigamedata:
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   prevgame: {fileID: 619881449}
   nextgame: {fileID: 1652121211}
   freeModeGame: {fileID: 217597639}
+  uselessCamera: {fileID: 0}
 --- !u!1 &1220127300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +2048,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576477252}
   m_CullTransparentMesh: 1
+--- !u!1 &1633989953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633989954}
+  m_Layer: 5
+  m_Name: SelectionSkinMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1633989954
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633989953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1060640487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1652121210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,7 +2220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1687011903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,6 +2697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameData:
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
+  - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
+  - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
   miniGameInstance: {fileID: 0}
   uselessCamera: {fileID: 1687634250}
 --- !u!4 &1931054318
