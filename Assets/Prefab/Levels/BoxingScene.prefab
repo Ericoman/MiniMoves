@@ -837,6 +837,7 @@ MonoBehaviour:
   checking: 0
   random: 0
   minigamePoints: 5
+  cooldownTime: 0.5
   hit: {fileID: 8032062633512473858}
   miss: {fileID: 4983942762197328974}
   background: {fileID: 8113137747720451337}
@@ -852,7 +853,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cff9742dd2417c14f8ac8d8ba4a0e9fd, type: 3}
   m_Resource: {fileID: 8300000, guid: cff9742dd2417c14f8ac8d8ba4a0e9fd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -949,7 +950,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: badaec828d29e204b86dab2bd8df04e3, type: 3}
   m_Resource: {fileID: 8300000, guid: badaec828d29e204b86dab2bd8df04e3, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1046,7 +1047,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7c02e703721ed0f4983c20329c11a3f1, type: 3}
   m_Resource: {fileID: 8300000, guid: 7c02e703721ed0f4983c20329c11a3f1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

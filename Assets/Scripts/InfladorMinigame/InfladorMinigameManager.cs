@@ -12,13 +12,14 @@ public class InfladorMinigameManager : MonoBehaviour
     public float timeBetweenBalls = 1.0f;
     public bool ballInStation = false;
     public int minigamePoints = 5;
+    public AudioSource explode, squeak, background;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ballPump = 0;
         points = 0;
-        
+        background.Play();
         ballInStation = true;
     }
 
@@ -32,7 +33,7 @@ public class InfladorMinigameManager : MonoBehaviour
     {
         
         ballPump++;
-
+        squeak.Play();
         if (ballPump < maxPumps && ballInStation == true)
         {
             // Scale the inflatingBall by 0.2 each time PumpBall is called
@@ -41,6 +42,7 @@ public class InfladorMinigameManager : MonoBehaviour
                 currentScale.x + scaleFactor,
                 currentScale.y + scaleFactor,
                 currentScale.z + scaleFactor);
+
         }
 
         if (ballPump == maxPumps)
@@ -55,6 +57,7 @@ public class InfladorMinigameManager : MonoBehaviour
         points++;
         MiniGameManager.Instance.AddGamePoints(minigamePoints);
         Debug.Log("Points: " + points);
+        explode.Play();
         inflatingBall.SetActive(false);
     }
 
