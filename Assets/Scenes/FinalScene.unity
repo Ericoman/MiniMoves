@@ -2838,11 +2838,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameData:
-  - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
-  - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
   miniGameInstance: {fileID: 0}
   uselessCamera: {fileID: 1687634250}
+  gameCanvas: {fileID: 1060640486}
+  minigameDuration: 30
+  gamePoints: 0
 --- !u!4 &1931054318
 Transform:
   m_ObjectHideFlags: 0
