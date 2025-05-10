@@ -12,14 +12,14 @@ public class InfladorMinigameManager : MonoBehaviour
     public float timeBetweenBalls = 1.0f;
     public bool ballInStation = false;
     public int minigamePoints = 5;
-    public AudioSource explode, squeak;
+    public AudioSource explode, squeak, background;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ballPump = 0;
         points = 0;
-        
+        background.Play();
         ballInStation = true;
     }
 
