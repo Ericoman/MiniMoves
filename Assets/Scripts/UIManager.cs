@@ -1,0 +1,138 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIManager : MonoBehaviour
+{
+    public Image titleImage, background;
+    public GameObject menu, selectionMenu, freeModeMenu, selectSkinmenu;
+    public GameObject minigameManager;
+    public MinigameData[] minigamedata;
+    private int indexActual = 0;
+    public Button prevgame, nextgame;
+    public Text freeModeGame;
+    public Camera uselessCamera;
+
+    void Start()
+    {
+        // Opcional: iniciar con fade in
+        StartCoroutine(FadeIn());
+        ActualizarTexto();
+        prevgame.onClick.AddListener(() => CambiarMinijuego(-1));
+        nextgame.onClick.AddListener(() => CambiarMinijuego(1));
+    }
+    
+
+    void CambiarMinijuego(int direccion)
+    {
+        indexActual += direccion;
+        if (indexActual < 0) indexActual = minigamedata.Length - 1;
+        if (indexActual >= minigamedata.Length) indexActual = 0;
+
+        ActualizarTexto();
+    }
+
+    void ActualizarTexto()
+    {
+        if (minigamedata.Length > 0)
+        {
+            freeModeGame.text = minigamedata[indexActual].MinigameID;
+        }
+        else
+        {
+            freeModeGame.text = "No hay minijuegos";
+        }
+    }
+    public MinigameData getSelectedMinigame()
+    {
+        return minigamedata[indexActual];
+    }
+
+    public IEnumerator FadeIn()
+    {
+        float elapsed = 0f;
+        Color color = titleImage.color;
+        color.a = 0f;
+        titleImage.color = color;
+
+        while (elapsed < 2)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Clamp01(elapsed / 2);
+            titleImage.color = color;
+            yield return null;
+        }
+        yield return new WaitForSeconds(3);
+        StartCoroutine(FadeOut());
+    }
+
+    public IEnumerator FadeOut()
+    {
+        float elapsed = 0f;
+        Color color = titleImage.color;
+        color.a = 1f;
+       titleImage.color = color;
+
+        while (elapsed < 2)
+        {
+            elapsed += Time.deltaTime;
+            color.a = 1f - Mathf.Clamp01(elapsed / 2);
+            titleImage.color = color;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1);
+        menu.SetActive(true);
+    }
+
+    public void PlayButton()
+    {
+        menu.SetActive(false);
+        selectionMenu.SetActive(true);
+    }
+    public void QuitButton()
+    {
+#if UNITY_EDITOR
+        // Esto detiene el juego en el editor
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // Esto funciona en una build real
+        Application.Quit();
+#endif
+    }
+
+    public void ChallengeButton()
+    {
+        selectionMenu.SetActive(false);
+        background.enabled = false;
+        minigameManager.GetComponent<MiniGameManager>().uselessCamera.enabled = false;
+        minigameManager.GetComponent<MiniGameManager>().LoadMinijuego();
+    }
+    public void FreeModeButton()
+    {
+        selectionMenu.SetActive(false);
+        freeModeMenu.SetActive(true);
+
+    }
+    public void SelectSkinButton()
+    {
+        selectionMenu.SetActive(false);
+        selectSkinmenu.SetActive(true);
+    }
+    public void BackToMainMenu()
+    {
+        selectionMenu.SetActive(false);
+        menu.SetActive(true);
+    }
+    public void BackToSelectionMenu()
+    {
+        freeModeMenu.SetActive(false);
+        selectSkinmenu.SetActive(false);
+        
+        selectionMenu.SetActive(true);
+    }
+    public void PlaySelectedMode()
+    {
+        freeModeMenu.SetActive(false);
+        //minigameManager.GetComponent<MiniGameManager>().PlaySelectedMiniGame(getSelectedMinigame());
+    }
+}
