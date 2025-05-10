@@ -35,9 +35,14 @@ public class CharacterMovement : BaseInputManager
                 if (idWaypoint != GameManagerBoxingTopDown.Instance.stimulus.Length)
                 {
                     idWaypoint++;
+                    if (idWaypoint > GameManagerBoxingTopDown.Instance.waypoint.Length - 1)
+                    {
+                        idWaypoint = GameManagerBoxingTopDown.Instance.waypoint.Length - 1;
+                    }
                     currentWaypoint = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint];
                     moving = true;
-                }              
+                }         
+                return;
             }
             else if (movement.x > thresholdX)
             {
@@ -45,9 +50,14 @@ public class CharacterMovement : BaseInputManager
                 if (idWaypoint != 0)
                 {
                     idWaypoint--;
+                    if (idWaypoint < 0)
+                    {
+                        idWaypoint = 0;
+                    }
                     currentWaypoint = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint];
                     moving = true;
                 }
+                return;
             }
             if(movement.z < -thresholdY)
             {

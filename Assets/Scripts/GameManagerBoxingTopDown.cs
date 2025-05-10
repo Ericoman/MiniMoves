@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManagerBoxingTopDown : MonoBehaviour
 {
@@ -14,6 +14,8 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     public bool checking = false;
     public int random = 0;
     public int minigamePoints = 5;
+    public float cooldownTime = 0.5f;
+    public AudioSource hit, miss, background;
     public static GameManagerBoxingTopDown Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +47,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        background.Play();
         yield return new WaitForSeconds(2);
         while (true)
         {
@@ -67,6 +70,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
         {
             if (stimulus[i].GetComponent<Stimulus>().activated && !stimulus[i].GetComponent<Stimulus>().hit)
             {
+                miss.Play();
                 ChangeFeedback("Fail");
             }
             stimulus[i].GetComponent<Stimulus>().activated = false;
@@ -100,27 +104,27 @@ public class GameManagerBoxingTopDown : MonoBehaviour
         
 
     }
-    public void callCoroutine(int id)
-    {
-        StartCoroutine(HitLight(id));
-    }
+
     IEnumerator HitLight(int id)
     {
-
+        
         if (stimulus[id].GetComponent<Stimulus>().activated)
         {
             ChangeFeedback("Good");
-            minigamePoints++;
+            hit.Play();
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         else
         {
             ChangeFeedback("Fail");
-            MiniGameManager.Instance.AddGamePoints(minigamePoints);
+            miss.Play();
+            MiniGameManager.Instance.RemoveGamePoints(minigamePoints);
         }
-        yield return new WaitForSeconds(0.9f);
-        ChangeFeedback("");
+        yield return null;
+        yield return new WaitForSeconds(cooldownTime);
         checking = false;
+        ChangeFeedback("");
+        
     }
 
 

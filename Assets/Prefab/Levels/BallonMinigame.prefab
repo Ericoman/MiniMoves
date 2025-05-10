@@ -327,10 +327,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inflatingBall: {fileID: 4244430975987207222}
   ballPump: 0
-  points: 0
   maxPumps: 10
   scaleFactor: 0.2
+  timeBetweenBalls: 0.2
   ballInStation: 0
+  minigamePoints: 5
 --- !u!1 &7178193113867481214
 GameObject:
   m_ObjectHideFlags: 0
