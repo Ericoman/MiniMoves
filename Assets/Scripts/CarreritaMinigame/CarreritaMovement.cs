@@ -10,6 +10,7 @@ public class CarreritaMovement : MonoBehaviour
     public Transform midPosition;
     public Transform botPosition;
     
+    public CarreritaManager carreritaManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +31,15 @@ public class CarreritaMovement : MonoBehaviour
         else
         {
             playerPrefab.transform.position = midPosition.position;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            carreritaManager.RemovePoints();
+            Destroy(other.gameObject);
         }
     }
 }

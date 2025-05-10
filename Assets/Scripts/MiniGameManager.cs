@@ -1,10 +1,36 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MiniGameManager : MonoBehaviour
 {
     public MinigameData[] minigameData;
     public GameObject miniGameInstance;
     public Camera uselessCamera;
+    public Canvas gameCanvas;
+    
+    public float minigameDuration = 30f;
+    private static MiniGameManager _instance;
+    public static MiniGameManager Instance => _instance;
+    // Keep track of the played minigames
+    private List<MinigameData> usedMinigames = new List<MinigameData>();
+
+    public int gamePoints;
+    
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -13,22 +39,25 @@ public class MiniGameManager : MonoBehaviour
 
     public void LoadMinijuego()
     {
-        if (minigameData != null && minigameData[Random.Range(0,minigameData.Length)].MiniGamePrefab != null)
-        {
-            miniGameInstance = Instantiate(minigameData[0].MiniGamePrefab);
-            Debug.Log("Minijuego cargado: " + minigameData[0].MinigameID);
-        }
-        else
-        {
-            Debug.LogWarning("Datos del minijuego incompletos");
-        }
+        StartCoroutine(TutorialPanelLogic());
     }
     public void PlaySelectedMiniGame(MinigameData selectedgame)
     {
         if (selectedgame != null && selectedgame.MiniGamePrefab != null)
         {
+            // Destroy any existing minigame instance
+            if (miniGameInstance != null)
+            {
+                Destroy(miniGameInstance);
+                Debug.Log("Previous minigame instance destroyed.");
+            }
+
+            // Instantiate the selected minigame
             miniGameInstance = Instantiate(selectedgame.MiniGamePrefab);
             Debug.Log("Minijuego cargado: " + selectedgame.MinigameID);
+
+            // Start a 30-second timer to destroy this instance and load the next one
+            StartCoroutine(MinigameTimer(minigameDuration)); // Pass a duration of 30 seconds
         }
         else
         {
@@ -36,4 +65,111 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
+    IEnumerator TutorialPanelLogic()
+    {
+        // Select a random minigame
+        if (minigameData != null && minigameData.Length > 0)
+        {
+            MinigameData selectedGame = GetRandomUnusedMiniGame(); // Method to select unused minigame
+
+            if (selectedGame != null)
+            {
+                // Instantiate the tutorial panel
+                if (selectedGame.TutorialPanel != null)
+                {
+                    GameObject tutorialPanelInstance = Instantiate(selectedGame.TutorialPanel);
+
+                    // Ensure the tutorial panel is part of the Canvas hierarchy
+                    if (gameCanvas != null)
+                    {
+                        tutorialPanelInstance.transform.SetParent(gameCanvas.transform, false); // Attach to the Canvas
+                        // Reset the RectTransform for correct scaling
+                        RectTransform rectTransform = tutorialPanelInstance.GetComponent<RectTransform>();
+                        if (rectTransform != null)
+                        {
+                            rectTransform.anchoredPosition = Vector2.zero; // Center it
+                            rectTransform.localScale = Vector3.one; // Reset scale
+                            rectTransform.sizeDelta = Vector2.zero; // Optionally adjust size
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("Game Canvas is not assigned.");
+                    }
+                    Debug.Log("Tutorial panel displayed for: " + selectedGame.MinigameID);
+
+                    // Wait for 5 seconds before proceeding
+                    yield return new WaitForSeconds(5);
+
+                    // Destroy the tutorial panel after the timer
+                    Destroy(tutorialPanelInstance);
+                }
+                else
+                {
+                    Debug.LogWarning("Tutorial panel is missing for: " + selectedGame.MinigameID);
+                }
+
+                // Instantiate the minigame and start the 30-second timer
+                PlaySelectedMiniGame(selectedGame);
+            }
+            else
+            {
+                Debug.LogWarning("No unused minigames available to select.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No minigame data available");
+        }
+    }
+
+    IEnumerator MinigameTimer(float duration)
+    {
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // Destroy the current minigame instance
+        if (miniGameInstance != null)
+        {
+            Destroy(miniGameInstance);
+            miniGameInstance = null;
+            Debug.Log("Minigame instance destroyed after " + duration + " seconds.");
+        }
+
+        // Load the next random minigame
+        StartCoroutine(TutorialPanelLogic());
+    }
+
+    private MinigameData GetRandomUnusedMiniGame()
+    {
+        // Get the list of unused minigames
+        List<MinigameData> unusedMinigames = new List<MinigameData>();
+
+        foreach (var game in minigameData)
+        {
+            if (!usedMinigames.Contains(game))
+            {
+                unusedMinigames.Add(game);
+            }
+        }
+
+        if (unusedMinigames.Count > 0)
+        {
+            // Randomly select one of the unused minigames
+            MinigameData selectedGame = unusedMinigames[Random.Range(0, unusedMinigames.Count)];
+            usedMinigames.Add(selectedGame); // Mark it as used
+            return selectedGame;
+        }
+
+        // If no unused minigames are available, reset the used list and return null
+        usedMinigames.Clear();
+        Debug.Log("All minigames have been played. Resetting the used minigame list.");
+        return null;
+    }
+
+    public void SetGamePoints(int minigamePoints)
+    {
+        gamePoints += minigamePoints;
+    }
+    
 }

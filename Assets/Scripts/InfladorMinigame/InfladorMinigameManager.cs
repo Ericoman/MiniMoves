@@ -9,7 +9,7 @@ public class InfladorMinigameManager : MonoBehaviour
     public int points = 0;
     public int maxPumps = 10;
     public float scaleFactor = 0.2f;
-    
+    public float timeBetweenBalls = 1.0f;
     public bool ballInStation = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,13 +45,14 @@ public class InfladorMinigameManager : MonoBehaviour
         if (ballPump == maxPumps)
         {
             ballInStation = false;
-            StartCoroutine(WaitForBall(2f));
+            StartCoroutine(WaitForBall(timeBetweenBalls));
         }
     }
 
     public void PopBall()
     {
         points++;
+        MiniGameManager.Instance.SetGamePoints(points);
         Debug.Log("Points: " + points);
         inflatingBall.SetActive(false);
     }

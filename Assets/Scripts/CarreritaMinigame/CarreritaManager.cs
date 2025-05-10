@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CarreritaManager : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class CarreritaManager : MonoBehaviour
     public float doubleSpawnChance = 0.0f; // 30% chance to spawn two obstacles
 
     public float managerTimer;
+    public int pointsToAdd = 5;
+    public int totalPoints = 0;
     void Start()
     {
         // Initialize the spawn points array
@@ -95,6 +99,25 @@ public class CarreritaManager : MonoBehaviour
         Instantiate(obstaclePrefab, chosenSpawnPoint.position, Quaternion.identity);
         // Optionally, set the obstacle's speed if needed
     }
-    
-    
+
+    public void AddPoints()
+    {
+        this.totalPoints += pointsToAdd;
+        Debug.Log("Points: " + totalPoints);
+    }
+
+    public void RemovePoints()
+    {
+        this.totalPoints -= pointsToAdd;
+        Debug.Log("Points: " + totalPoints);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(other.gameObject);
+            AddPoints();
+        }
+    }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameID: Pose Imitation
   miniGamePrefab: {fileID: 6635153577553488446, guid: 0d9f89ee2bcbdfe48bac38a7db269eb0, type: 3}
+  tutorialPanel: {fileID: 3498594972370910775, guid: 1aeca4f27085fae46a79d451c06dac54, type: 3}
