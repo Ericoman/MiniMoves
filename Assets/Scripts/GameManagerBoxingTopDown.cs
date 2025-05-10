@@ -14,6 +14,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     public bool checking = false;
     public int random = 0;
     public int minigamePoints = 5;
+    public AudioSource hit, miss, background;
     public static GameManagerBoxingTopDown Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +46,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        background.Play();
         yield return new WaitForSeconds(2);
         while (true)
         {
@@ -67,6 +69,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
         {
             if (stimulus[i].GetComponent<Stimulus>().activated && !stimulus[i].GetComponent<Stimulus>().hit)
             {
+                miss.Play();
                 ChangeFeedback("Fail");
             }
             stimulus[i].GetComponent<Stimulus>().activated = false;
@@ -110,12 +113,14 @@ public class GameManagerBoxingTopDown : MonoBehaviour
         if (stimulus[id].GetComponent<Stimulus>().activated)
         {
             ChangeFeedback("Good");
+            hit.Play();
             minigamePoints++;
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         else
         {
             ChangeFeedback("Fail");
+            miss.Play();
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         yield return new WaitForSeconds(0.9f);

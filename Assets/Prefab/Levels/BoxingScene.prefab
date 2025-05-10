@@ -836,8 +836,9 @@ MonoBehaviour:
   resultFeedback: {fileID: 6227365653643100232}
   checking: 0
   random: 0
-  hitSound: {fileID: 8032062633512473858}
-  missSound: {fileID: 4983942762197328974}
+  minigamePoints: 5
+  hit: {fileID: 8032062633512473858}
+  miss: {fileID: 4983942762197328974}
   background: {fileID: 8113137747720451337}
 --- !u!82 &8032062633512473858
 AudioSource:
