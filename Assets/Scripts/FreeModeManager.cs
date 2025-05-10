@@ -8,6 +8,7 @@ public class FreeModeManager : MonoBehaviour
     private GameObject miniGameInstance;
     public GameObject menuFreeMode;
     public GameObject menuCamera;
+    public GameObject menuBackground;
     public float minigameDuration = 30f;
 
     public Leaderboard resultsScreen;
@@ -15,6 +16,7 @@ public class FreeModeManager : MonoBehaviour
     {
         menuCamera.SetActive(false);
         menuFreeMode.SetActive(false);
+        menuBackground.SetActive(false);
         PlaySelectedMiniGame(minigameData[0]);
     }
 
@@ -22,6 +24,7 @@ public class FreeModeManager : MonoBehaviour
     {
         menuCamera.SetActive(false);
         menuFreeMode.SetActive(false);
+        menuBackground.SetActive(false);
         PlaySelectedMiniGame(minigameData[1]);
     }
 
@@ -29,6 +32,7 @@ public class FreeModeManager : MonoBehaviour
     {
         menuCamera.SetActive(false);
         menuFreeMode.SetActive(false);
+        menuBackground.SetActive(false);
         PlaySelectedMiniGame(minigameData[2]);
     }
 
@@ -36,6 +40,7 @@ public class FreeModeManager : MonoBehaviour
     {
         menuCamera.SetActive(false);
         menuFreeMode.SetActive(false);
+        menuBackground.SetActive(false);
         PlaySelectedMiniGame(minigameData[3]);
     }
     
