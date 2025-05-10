@@ -65,4 +65,22 @@ public class MobileInputSender : MonoBehaviour
     {
         udpClient?.Close();
     }
+
+    public void ChangeTargetIP(string _ip)
+    {
+        targetIP = _ip;
+    }
+
+    public void ChangeTargetPort(string _port)
+    {
+        try
+        {
+            targetPort = Int32.Parse(_port);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+            throw;
+        }
+    }
 }
