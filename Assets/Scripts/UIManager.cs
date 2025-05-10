@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public MinigameData[] minigamedata;
     private int indexActual = 0;
     public Button prevgame, nextgame;
-    public Text freeModeGame;
+    //public Text freeModeGame;
     public Camera uselessCamera;
 
     public float fadeInTime = 0.1f;
@@ -40,11 +40,11 @@ public class UIManager : MonoBehaviour
     {
         if (minigamedata.Length > 0)
         {
-            freeModeGame.text = minigamedata[indexActual].MinigameID;
+            //freeModeGame.text = minigamedata[indexActual].MinigameID;
         }
         else
         {
-            freeModeGame.text = "No hay minijuegos";
+            //freeModeGame.text = "No hay minijuegos";
         }
     }
     public MinigameData getSelectedMinigame()
