@@ -53,7 +53,7 @@ public class GameManagerImitate : MonoBehaviour
             posing = true;
             int random = Random.Range(0, poses.Length);
             poses[random].SetActive(true);
-            
+            startPose.Play();
             directionPose = random;
             yield return new WaitForSeconds(1);
             posing = false;
@@ -61,6 +61,7 @@ public class GameManagerImitate : MonoBehaviour
             poses[random].SetActive(false);
             if (!turnsbool[turn])
             {
+                missPose.Play();
                 StartCoroutine(ChangeText("Fail"));
             }
             yield return new WaitForSeconds(Random.Range(1,3));
@@ -74,11 +75,13 @@ public class GameManagerImitate : MonoBehaviour
     {
         if (directionPose==direction)
         {
+            hitPose.Play();
             StartCoroutine(ChangeText("Good"));
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         else
         {
+            missPose.Play();
             StartCoroutine(ChangeText("Fail"));
             MiniGameManager.Instance.RemoveGamePoints(minigamePoints);
         }
