@@ -142,6 +142,7 @@ public class FreeModeManager : MonoBehaviour
             Debug.Log("Minigame instance destroyed after " + duration + " seconds.");
         }
         
+        menuCamera.SetActive(true);
         resultsScreen.Show(true);
     }
     

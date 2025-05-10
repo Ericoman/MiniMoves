@@ -153,6 +153,7 @@ public class UIManager : MonoBehaviour
         scoreboard.SetActive(true);
         back.Play();
         selectionMenu.SetActive(false);
+        background.enabled = true;
         menu.SetActive(true);
     }
     public void BackToSelectionMenu()
@@ -161,6 +162,7 @@ public class UIManager : MonoBehaviour
         back.Play();
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
+        leaderboards.SetActive(false);
         
         selectionMenu.SetActive(true);
     }
@@ -199,6 +201,10 @@ public class UIManager : MonoBehaviour
         scoreboard.SetActive(true);
         // Cargar tabla actual
         ScoreList scoreList = LoadScores();
+        if (name == "")
+        {
+            name = "Default";
+        }
 
         // Agregar nueva entrada
         ScoreEntry newEntry = new ScoreEntry { playerName = name, score = score };
