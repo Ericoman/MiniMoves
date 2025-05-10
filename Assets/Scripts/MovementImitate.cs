@@ -1,36 +1,34 @@
 using System.Collections;
 using UnityEngine;
 
-public class MovementImitate : MonoBehaviour
+public class MovementImitate : BaseInputManager
 {
     public InputManager inputManager;
     public bool posing = false;
     public GameObject[] poses;
     public int currentPose = 3;
 
+    [SerializeField]
+    private float thresholdX = 2f;
+    [SerializeField]
+    private float thresholdY = 2f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void InputManagerOnMovementInputEvent(Vector3 movement)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (inputManager.movementInput.x > 0 && inputManager.movementInput.y ==0)
-        {
-            StartCoroutine(MakePose(1));
-        }
-        else if (inputManager.movementInput.x < 0 && inputManager.movementInput.y == 0)
+        if (movement.x > thresholdX && Mathf.Abs(movement.y) < thresholdY)
         {
             StartCoroutine(MakePose(0));
         }
-        else if (inputManager.movementInput.y > 0 && inputManager.movementInput.x == 0)
+        else if (movement.x < -thresholdX && Mathf.Abs(movement.y) < thresholdY)
+        {
+            StartCoroutine(MakePose(1));
+        }
+        else if (movement.y > thresholdY && Mathf.Abs(movement.x) < thresholdX)
         {
             StartCoroutine(MakePose(2));
         }
     }
+    
     IEnumerator MakePose(int direction)
     {
         if (!posing)

@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public Text freeModeGame;
     public Camera uselessCamera;
 
+    public float fadeInTime = 0.1f;
+    public float fadeOutTime = 0.1f;
     void Start()
     {
         // Opcional: iniciar con fade in
@@ -63,7 +65,7 @@ public class UIManager : MonoBehaviour
             titleImage.color = color;
             yield return null;
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(fadeInTime);
         StartCoroutine(FadeOut());
     }
 
@@ -81,7 +83,7 @@ public class UIManager : MonoBehaviour
             titleImage.color = color;
             yield return null;
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(fadeOutTime);
         menu.SetActive(true);
     }
 
