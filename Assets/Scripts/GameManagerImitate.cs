@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManagerImitate : MonoBehaviour
 {
     public GameObject[] poses;
+    [SerializeField] private GameObject banderaIdle;
     public int directionPose=0;
     public bool hasPosed = false;
     public Text feedback;
@@ -52,6 +53,7 @@ public class GameManagerImitate : MonoBehaviour
             turn++;
             posing = true;
             int random = Random.Range(0, poses.Length);
+            banderaIdle.SetActive(false);
             poses[random].SetActive(true);
             startPose.Play();
             directionPose = random;
@@ -59,6 +61,7 @@ public class GameManagerImitate : MonoBehaviour
             posing = false;
             directionPose = 0;
             poses[random].SetActive(false);
+            banderaIdle.SetActive(true);
             if (!turnsbool[turn])
             {
                 missPose.Play();
