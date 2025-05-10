@@ -1419,10 +1419,13 @@ MonoBehaviour:
   minigamedata:
   - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
+  - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
   prevgame: {fileID: 619881449}
   nextgame: {fileID: 1652121211}
   freeModeGame: {fileID: 217597639}
   uselessCamera: {fileID: 0}
+  fadeInTime: 0.1
+  fadeOutTime: 0.1
 --- !u!1 &1220127300
 GameObject:
   m_ObjectHideFlags: 0

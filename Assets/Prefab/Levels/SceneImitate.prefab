@@ -1452,3 +1452,5 @@ MonoBehaviour:
   - {fileID: 4040498141217952392}
   - {fileID: 14109386878409507}
   currentPose: 0
+  thresholdX: 2
+  thresholdY: 2
