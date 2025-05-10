@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimonGame : MonoBehaviour
+public class SimonGame : BaseInputManager
 {
     [Header("Botones")]
     public GameObject[] normalButtons;    
@@ -25,6 +25,14 @@ public class SimonGame : MonoBehaviour
     public float delayDecrease = 0.05f;
     private float currentDelay;
 
+    [SerializeField] 
+    private float thresholdX = 2f;
+    [SerializeField]
+    private float thresholdY = 2f;
+
+    //[SerializeField] private float inputCooldown = 0.6f;
+    bool bCanPress = true;
+
     void Start()
     {
         currentDelay = startDelay;
@@ -32,29 +40,55 @@ public class SimonGame : MonoBehaviour
         StartCoroutine(ShowPattern());
     }
 
-    void Update()
+    protected override void InputManagerOnMovementInputEvent(Vector3 movement)
     {
-        if (!isPlayerTurn) return;
-
-        for (int i = 0; i < inputKeys.Length; i++)
+        if (!isPlayerTurn || !bCanPress) return;
+        if (movement.x > thresholdX && Mathf.Abs(movement.y) <= thresholdY)
         {
-            if (Input.GetKeyDown(inputKeys[i]))
+            CheckPattern(0);
+            Debug.Log("Izq");
+        }
+        else if (movement.x < -thresholdX && Mathf.Abs(movement.y) <= thresholdY)
+        {
+            CheckPattern(1);
+            Debug.Log("Derecha");
+        }
+        else if (movement.y < -thresholdY && Mathf.Abs(movement.x) <= thresholdX)
+        {
+            CheckPattern(2);
+            Debug.Log("Arriba");
+        }
+        else if (movement.y > thresholdY && Mathf.Abs(movement.x) <= thresholdX)
+        {
+            CheckPattern(3);
+            Debug.Log("Abajo");
+        }
+    }
+
+    IEnumerator InputCooldown(int index)
+    {
+        bCanPress = false;
+        ActivateButton(index);
+        yield return new WaitForSeconds(currentDelay);
+        DeactivateButton(index);
+        bCanPress = true;
+    }
+    void CheckPattern(int patternNumber)
+    {
+        StartCoroutine(InputCooldown(patternNumber));
+        if (patternNumber == pattern[currentStep])
+        {
+            currentStep++;
+            if (currentStep >= pattern.Count)
             {
-                if (i == pattern[currentStep])
-                {
-                    currentStep++;
-                    if (currentStep >= pattern.Count)
-                    {
-                        playerTurnText.gameObject.SetActive(true);
-                        StartCoroutine(NextRound());
-                    }
-                }
-                else
-                {
-                    playerFailText.gameObject.SetActive(true);
-                    ResetGame();
-                }
+                playerTurnText.gameObject.SetActive(true);
+                StartCoroutine(NextRound());
             }
+        }
+        else
+        {
+            playerFailText.gameObject.SetActive(true);
+            ResetGame();
         }
     }
 

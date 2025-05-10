@@ -15,17 +15,21 @@ public class MovementImitate : BaseInputManager
 
     protected override void InputManagerOnMovementInputEvent(Vector3 movement)
     {
-        if (movement.x > thresholdX && Mathf.Abs(movement.y) < thresholdY)
+        if (movement.x > thresholdX && Mathf.Abs(movement.y) <= thresholdY)
         {
             StartCoroutine(MakePose(0));
         }
-        else if (movement.x < -thresholdX && Mathf.Abs(movement.y) < thresholdY)
+        else if (movement.x < -thresholdX && Mathf.Abs(movement.y) <= thresholdY)
         {
             StartCoroutine(MakePose(1));
         }
-        else if (movement.y > thresholdY && Mathf.Abs(movement.x) < thresholdX)
+        else if (movement.y < -thresholdY && Mathf.Abs(movement.x) <= thresholdX)
         {
             StartCoroutine(MakePose(2));
+        }
+        else if (movement.y  > thresholdY && Mathf.Abs(movement.x) <= thresholdX)
+        {
+            StartCoroutine(MakePose(3));
         }
     }
     
@@ -37,20 +41,29 @@ public class MovementImitate : BaseInputManager
             {
                 GameManagerImitate.Instance.turnsbool[GameManagerImitate.Instance.turn] = true;
                 posing = true;
-                poses[direction].SetActive(true);
-                currentPose = direction;
+                if (direction < poses.Length)
+                {
+                    poses[direction].SetActive(true);
+                    currentPose = direction;
+                }
                 GameManagerImitate.Instance.CheckPose(direction);
                 GameManagerImitate.Instance.hasPosed = true;
                 yield return new WaitForSeconds(0.6f);
                 currentPose = 3;
 
-                poses[direction].SetActive(false);
+                if (direction < poses.Length)
+                {
+                    poses[direction].SetActive(false);
+                }
+
                 posing = false;
                 GameManagerImitate.Instance.hasPosed = false;
             }
             else
             {
                 GameManagerImitate.Instance.callCoroutine("Fail");
+                yield return new WaitForSeconds(0.6f);
+                posing = false;
             }
             
         }
