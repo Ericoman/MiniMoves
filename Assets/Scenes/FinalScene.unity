@@ -3518,10 +3518,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameData:
-  - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
+  - {fileID: 11400000, guid: 75b3b32b0e20031419682038fc9e6936, type: 2}
   miniGameInstance: {fileID: 0}
   gameCanvas: {fileID: 1060640486}
-  minigameDuration: 5
+  minigameDuration: 90
   resultsScreen: {fileID: 2122360915}
   gamePoints: 0
 --- !u!4 &1931054318

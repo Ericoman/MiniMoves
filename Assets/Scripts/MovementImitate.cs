@@ -6,6 +6,7 @@ public class MovementImitate : BaseInputManager
     public InputManager inputManager;
     public bool posing = false;
     public GameObject[] poses;
+    [SerializeField] private GameObject playerIdle;
     public int currentPose = 3;
 
     [SerializeField]
@@ -37,6 +38,7 @@ public class MovementImitate : BaseInputManager
             {
                 GameManagerImitate.Instance.turnsbool[GameManagerImitate.Instance.turn] = true;
                 posing = true;
+                playerIdle.SetActive(false);
                 poses[direction].SetActive(true);
                 currentPose = direction;
                 GameManagerImitate.Instance.CheckPose(direction);
@@ -45,6 +47,7 @@ public class MovementImitate : BaseInputManager
                 currentPose = 3;
 
                 poses[direction].SetActive(false);
+                playerIdle.SetActive(true);
                 posing = false;
                 GameManagerImitate.Instance.hasPosed = false;
             }
