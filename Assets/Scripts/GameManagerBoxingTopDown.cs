@@ -113,12 +113,14 @@ public class GameManagerBoxingTopDown : MonoBehaviour
             ChangeFeedback("Good");
             hit.Play();
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
+            CleanMaterials();
         }
         else
         {
             ChangeFeedback("Fail");
             miss.Play();
             MiniGameManager.Instance.RemoveGamePoints(minigamePoints);
+            CleanMaterials();
         }
         yield return null;
         yield return new WaitForSeconds(cooldownTime);

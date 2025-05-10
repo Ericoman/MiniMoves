@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     public float fadeInTime = 0.1f;
     public float fadeOutTime = 0.1f;
+    public AudioSource click, back;
     void Start()
     {
         // Opcional: iniciar con fade in
@@ -90,11 +91,13 @@ public class UIManager : MonoBehaviour
 
     public void PlayButton()
     {
+        click.Play();
         menu.SetActive(false);
         selectionMenu.SetActive(true);
     }
     public void QuitButton()
     {
+        back.Play();
 #if UNITY_EDITOR
         // Esto detiene el juego en el editor
         UnityEditor.EditorApplication.isPlaying = false;
@@ -106,6 +109,7 @@ public class UIManager : MonoBehaviour
 
     public void ChallengeButton()
     {
+        click.Play();
         selectionMenu.SetActive(false);
         background.enabled = false;
         uselessCamera.gameObject.SetActive(false);
@@ -113,22 +117,26 @@ public class UIManager : MonoBehaviour
     }
     public void FreeModeButton()
     {
+        click.Play();
         selectionMenu.SetActive(false);
         freeModeMenu.SetActive(true);
 
     }
     public void SelectSkinButton()
     {
+        click.Play();
         selectionMenu.SetActive(false);
         selectSkinmenu.SetActive(true);
     }
     public void BackToMainMenu()
     {
+        back.Play();
         selectionMenu.SetActive(false);
         menu.SetActive(true);
     }
     public void BackToSelectionMenu()
     {
+        back.Play();
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
         
@@ -136,6 +144,8 @@ public class UIManager : MonoBehaviour
     }
     public void PlaySelectedMode()
     {
+
+        click.Play();
         freeModeMenu.SetActive(false);
         //minigameManager.GetComponent<MiniGameManager>().PlaySelectedMiniGame(getSelectedMinigame());
     }
