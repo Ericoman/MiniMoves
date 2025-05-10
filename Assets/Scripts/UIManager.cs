@@ -18,14 +18,15 @@ public class UIManager : MonoBehaviour
         // Opcional: iniciar con fade in
         StartCoroutine(FadeIn());
         ActualizarTexto();
-        prevgame.onClick.AddListener(() => CambiarMinijuego(-1));
-        nextgame.onClick.AddListener(() => CambiarMinijuego(1));
+        //prevgame.onClick.AddListener(() => CambiarMinijuego(-1));
+        //nextgame.onClick.AddListener(() => CambiarMinijuego(1));
     }
     
 
-    void CambiarMinijuego(int direccion)
+    public void CambiarMinijuego(int direccion)
     {
         indexActual += direccion;
+        Debug.Log("BOPTON");
         if (indexActual < 0) indexActual = minigamedata.Length - 1;
         if (indexActual >= minigamedata.Length) indexActual = 0;
 
