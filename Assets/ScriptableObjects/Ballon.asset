@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameID: Ballon
   miniGamePrefab: {fileID: 80581428743477824, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
+  tutorialPanel: {fileID: 3498594972370910775, guid: 5b890ae6ae68f3a4caf4d210a9ee3ad3, type: 3}

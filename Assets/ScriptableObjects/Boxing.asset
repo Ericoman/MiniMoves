@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameID: Boxing
   miniGamePrefab: {fileID: 5030010944646234399, guid: ea68cfe775511c64ca5e80eb02a3c931, type: 3}
+  tutorialPanel: {fileID: 3498594972370910775, guid: 9e320129cf269e2468d0dd937443a01f, type: 3}
