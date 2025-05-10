@@ -11,6 +11,7 @@ public class GameManagerImitate : MonoBehaviour
     public bool[] turnsbool = new bool[50];
     public int turn;
     public bool posing = false;
+    public AudioSource startPose, hitPose, missPose, backgroundMusic;
     
     public static GameManagerImitate Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +19,7 @@ public class GameManagerImitate : MonoBehaviour
     {
         directionPose = 0;
         StartCoroutine(ChangePoses());
+        
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class GameManagerImitate : MonoBehaviour
 
     IEnumerator ChangePoses()
     {
+        backgroundMusic.Play();
         yield return new WaitForSeconds(1);
         while (true)
         {
