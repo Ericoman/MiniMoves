@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     private static InputManager _instance;
     public static InputManager Instance => _instance;
 
+    public bool bDebug = false;
     private void Awake()
     {
         if (_instance == null)
@@ -31,16 +32,16 @@ public class InputManager : MonoBehaviour
         movementInput = input;
         try
         {
-            if(debugText) debugText.text = "invocando";
+            if(bDebug && debugText) debugText.text = "invocando";
             MovementInputEvent?.Invoke(movementInput);
         }
         catch (Exception e)
         {
-            if(debugText) debugText.text = "excepcion: " + e.Message;
+            if(bDebug && debugText) debugText.text = "excepcion: " + e.Message;
         }
-        if(debugText) debugText.text = $"Received input from InputManager: {movementInput}";
+        if(bDebug && debugText) debugText.text = $"Received input from InputManager: {movementInput}";
         
         // Example: Log it or use it in device-specific logic
-        Debug.Log($"Received input from InputManager: {movementInput}");
+        if(bDebug) Debug.Log($"Received input from InputManager: {movementInput}");
     }
 }

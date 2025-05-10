@@ -2810,6 +2810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameData:
+  - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   - {fileID: 11400000, guid: 4af59e3de92b0c645b4f33ef1de970fe, type: 2}
   miniGameInstance: {fileID: 0}
   uselessCamera: {fileID: 1687634250}

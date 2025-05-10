@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     public Material[] materials;
     public GameObject[] waypoint;
     public int activatedStimulus = 0;
-    public Text resultFeedback;
+    public TextMeshProUGUI resultFeedback;
     public bool checking = false;
     public int random = 0;
     public static GameManagerBoxingTopDown Instance { get; private set; }
@@ -78,6 +79,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     public void ChangeFeedback(string value)
     {
         resultFeedback.text = value;
+        Debug.Log(value);
     }
 
     public void CheckHit(int id)

@@ -1,33 +1,37 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : BaseInputManager
 {
-    public InputManager inputManager;
-    
     public GameObject currentWaypoint;
     public int idWaypoint = 2;
     public bool moving = false;
     private float t = 0;
+    [SerializeField] private float thresholdX = 0.5f;
+    [SerializeField] private float thresholdY = 0.5f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         transform.position = currentWaypoint.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void InputManagerOnMovementInputEvent(Vector3 movement)
     {
-        
-        t = Time.deltaTime * 20;
+        if (Mathf.Abs(movement.x) > thresholdX)
+        {
+            Debug.Log(movement);
+        }
+
         if (!moving)
         {
             
-            if (inputManager.movementInput.x > 0)
+            if (movement.x < -thresholdX)
             {
-                Debug.Log("Detecta input");
+                Debug.Log("Muevo menor ");
                 if (idWaypoint != GameManagerBoxingTopDown.Instance.stimulus.Length)
                 {
                     idWaypoint++;
@@ -35,9 +39,9 @@ public class CharacterMovement : MonoBehaviour
                     moving = true;
                 }              
             }
-            else if (inputManager.movementInput.x < 0)
+            else if (movement.x > thresholdX)
             {
-                Debug.Log("Detecta input");
+                Debug.Log("Muevo mayor ");
                 if (idWaypoint != 0)
                 {
                     idWaypoint--;
@@ -45,9 +49,9 @@ public class CharacterMovement : MonoBehaviour
                     moving = true;
                 }
             }
-            if(inputManager.movementInput.y> 0)
+            if(movement.z < -thresholdY)
             {
-                Debug.Log("Detecta input");
+                Debug.Log("Golpeo ");
                 //if (idWaypoint == GameManagerBoxingTopDown.Instance.activatedStimulus)
                 //{
                 //    GameManagerBoxingTopDown.Instance.ChangeFeedback("Good");
@@ -60,14 +64,22 @@ public class CharacterMovement : MonoBehaviour
             }
           
         }
-        else
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+        t = Time.deltaTime * 20;
+        
+        if(moving)
         {
             transform.position = Vector3.Lerp(transform.position, GameManagerBoxingTopDown.Instance.waypoint[idWaypoint].transform.position, t);
         }
 
         if (Vector3.Distance(transform.position, currentWaypoint.transform.position) < 0.01f)
         {
-            Debug.Log("¡Hemos llegado!");
+            //Debug.Log("ï¿½Hemos llegado!");
             moving = false;
         }
 

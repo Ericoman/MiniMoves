@@ -10,6 +10,10 @@ public class PCInputReceiver : MonoBehaviour
     public int listenPort = 9000;
     private bool isListening = true;
 
+    public float damping = 0.9f;
+    private Vector3 velocity;
+    private Vector3 acceleration;
+    
     void Start()
     {
         udpClient = new UdpClient(listenPort); // Binds to 0.0.0.0
@@ -38,9 +42,10 @@ public class PCInputReceiver : MonoBehaviour
             {
                 UdpReceiveResult result = await udpClient.ReceiveAsync();
                 string messageString = Encoding.UTF8.GetString(result.Buffer);
-                Debug.Log($"[UDP] Received from {result.RemoteEndPoint}: {messageString}");
+                //Debug.Log($"[UDP] Received from {result.RemoteEndPoint}: {messageString}");
                 MobileInputSender.UDPMessage message = JsonUtility.FromJson<MobileInputSender.UDPMessage>(messageString);
-                Debug.Log(message.inputVector);
+                //Debug.Log(message.inputVector);
+                
                 InputManager.Instance.HandleInput(message.inputVector);
             }
             catch (SocketException ex)
