@@ -167,9 +167,14 @@ public class MiniGameManager : MonoBehaviour
         return null;
     }
 
-    public void SetGamePoints(int minigamePoints)
+    public void AddGamePoints(int pointsToAdd)
     {
-        gamePoints += minigamePoints;
+        gamePoints += pointsToAdd;
+    }
+
+    public void RemoveGamePoints(int pointsToRemove)
+    {
+        gamePoints-= pointsToRemove;
     }
     
 }

@@ -13,6 +13,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     public TextMeshProUGUI resultFeedback;
     public bool checking = false;
     public int random = 0;
+    public int minigamePoints = 5;
     public static GameManagerBoxingTopDown Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -109,10 +110,13 @@ public class GameManagerBoxingTopDown : MonoBehaviour
         if (stimulus[id].GetComponent<Stimulus>().activated)
         {
             ChangeFeedback("Good");
+            minigamePoints++;
+            MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         else
         {
             ChangeFeedback("Fail");
+            MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         yield return new WaitForSeconds(0.9f);
         ChangeFeedback("");

@@ -6,11 +6,12 @@ public class InfladorMinigameManager : MonoBehaviour
     public GameObject inflatingBall;
 
     public int ballPump = 0;
-    public int points = 0;
+    private int points = 0;
     public int maxPumps = 10;
     public float scaleFactor = 0.2f;
     public float timeBetweenBalls = 1.0f;
     public bool ballInStation = false;
+    public int minigamePoints = 10;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,7 +53,7 @@ public class InfladorMinigameManager : MonoBehaviour
     public void PopBall()
     {
         points++;
-        MiniGameManager.Instance.SetGamePoints(points);
+        MiniGameManager.Instance.AddGamePoints(minigamePoints);
         Debug.Log("Points: " + points);
         inflatingBall.SetActive(false);
     }

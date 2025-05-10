@@ -21,7 +21,7 @@
                     "id": "eee39991-2485-4362-be59-1cf93baee5ca",
                     "path": "3DVector",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector3(x=-10,y=10,z=10)",
                     "groups": "",
                     "action": "Directions",
                     "isComposite": true,
