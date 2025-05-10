@@ -99,7 +99,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -1.697, y: 35.95, z: -28.13}
+        value: {x: -17.11, y: 34.744, z: -26.765}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -404,7 +404,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 7.2254174e-17, y: 0.4470001, z: 0.14300008}
+        value: {x: 0, y: 0.546, z: 0.139}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -452,7 +452,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.016009377, y: 0.12799934, z: -0.025031362}
+        value: {x: -0.016010692, y: 0.12800045, z: -0.025037838}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1318,7 +1318,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -1.697
+        value: -17.11
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1339,7 +1339,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 35.95
+        value: 34.744
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1360,7 +1360,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -28.13
+        value: -26.765
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2074,7 +2074,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 7.2254174e-17
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2095,7 +2095,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.4470001
+        value: 0.546
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2116,7 +2116,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.14300008
+        value: 0.139
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2326,7 +2326,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.016009377
+        value: -0.016010692
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2347,7 +2347,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.12799934
+        value: 0.12800045
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2368,7 +2368,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.025031362
+        value: -0.025037838
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3904,7 +3904,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
+    path: Armature/mixamorig:Hips
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3916,7 +3916,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
+    path: Armature/mixamorig:Hips
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3928,7 +3928,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
+    path: Armature/mixamorig:Hips
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4048,7 +4048,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Armature/mixamorig:Hips
+    path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4060,7 +4060,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Armature/mixamorig:Hips
+    path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4072,7 +4072,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Armature/mixamorig:Hips
+    path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
     classID: 4
     script: {fileID: 0}
     flags: 0

@@ -2028,6 +2028,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5088846336538386842}
     - target: {fileID: 4689797236707152109, guid: 7500bb522978bf846ba7bd6737aa8446, type: 3}
+      propertyPath: animPaja
+      value: 
+      objectReference: {fileID: 6219629462875173611}
+    - target: {fileID: 4689797236707152109, guid: 7500bb522978bf846ba7bd6737aa8446, type: 3}
       propertyPath: infladorManager
       value: 
       objectReference: {fileID: 5088846336538386842}
@@ -2212,6 +2216,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe424e4df6898548b76126855bfce69, type: 3}
+--- !u!95 &6219629462875173611 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -5884263125759678590, guid: cbe424e4df6898548b76126855bfce69, type: 3}
+  m_PrefabInstance: {fileID: 8648729696949785961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8026866558290474515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1685293272660829050, guid: cbe424e4df6898548b76126855bfce69, type: 3}

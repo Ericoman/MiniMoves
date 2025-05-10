@@ -11,6 +11,7 @@ public class InfladorScript : BaseInputManager
     [SerializeField]
     private bool bFapMode = false;
     private Vector3 currentTargetPosition;
+    [SerializeField] private Animator animPaja;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -35,11 +36,13 @@ public class InfladorScript : BaseInputManager
         if (value > threshold && currentTargetPosition != position1.position)
         {
             currentTargetPosition = position1.position; // Set target to position1
+            animPaja.SetBool("paja", false);
         }
         // Check for "Down" input (negative Y)
         else if (value < -threshold && currentTargetPosition != position2.position)
         {
             currentTargetPosition = position2.position; // Set target to position2
+            animPaja.SetBool("paja", true);
             infladorManager.PumpBall();
         }
 
