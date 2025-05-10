@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CapShader
+  m_Name: CapGirl1
   m_Shader: {fileID: -6465566751694194690, guid: b9bbf951275650f4393d63c747c0bf4c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

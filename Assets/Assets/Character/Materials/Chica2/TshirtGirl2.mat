@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5689476073805327563
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shorts
+  m_Name: TshirtGirl2
   m_Shader: {fileID: -6465566751694194690, guid: b9bbf951275650f4393d63c747c0bf4c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -25,11 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AO:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1e3c4556bb39b4247a92136bd10eb951, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: f4454c5518c75ba4b9446be36df78016, type: 3}
+        m_Texture: {fileID: 2800000, guid: fe7ec84c4d58ba14f91758f9987c1d2d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -49,23 +62,13 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color1: {r: 0.6, g: 0.54509807, b: 0.7843138, a: 0}
-    - _Color2: {r: 0, g: 0, b: 0, a: 0}
-    - _Color3: {r: 1, g: 1, b: 1, a: 0}
-    - _ColorAO1: {r: 0.8039216, g: 0.54901963, b: 0.54901963, a: 0}
+    - _Blue: {r: 0, g: 0, b: 0, a: 0}
+    - _Color1: {r: 0.54509807, g: 0.53333336, b: 0.24705884, a: 1}
+    - _Color2: {r: 1, g: 1, b: 1, a: 0}
+    - _Color3: {r: 0.9811321, g: 0.94934785, b: 0.040108997, a: 0}
+    - _ColorAO1: {r: 0.8050314, g: 0.54934525, b: 0.54934525, a: 0}
     - _ColorAO2: {r: 1, g: 1, b: 1, a: 0}
+    - _Green: {r: 0, g: 0, b: 0, a: 0}
+    - _Red: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &3739837872279629654
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 9
