@@ -432,9 +432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a54089cd4bd8b48acc763f629cf8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   position1: {fileID: 6791964582780827690}
   position2: {fileID: 5777504333946918854}
+  infladorManager: {fileID: 0}
+  threshold: 0.5
 --- !u!1 &7095320810609554896
 GameObject:
   m_ObjectHideFlags: 0
