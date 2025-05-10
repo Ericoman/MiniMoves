@@ -1,46 +1,107 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class FreeModeManager : MonoBehaviour
 {
     public MinigameData[] minigameData; // Assign from inspector or through code
     private GameObject miniGameInstance;
-    public GameObject menuFreeMode;
+
     public GameObject menuCamera;
-    public GameObject menuBackground;
     public float minigameDuration = 30f;
 
+    public Canvas gameCanvas;
+    
+    public UIManager uiManager;
     public Leaderboard resultsScreen;
+
+    public static FreeModeManager _instance;
+    public static FreeModeManager Instance => _instance;
+    
+    
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+    }
+
+    private void SceneManagerOnsceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0)
+        {
+            Reinitialize();
+        }
+    }
+
+    private void Reinitialize()
+    {
+        if (gameCanvas == null)
+        {
+            gameCanvas = GameObject.FindWithTag("GameCanvas").GetComponent<Canvas>();
+        }
+        if (resultsScreen == null)
+        {
+            resultsScreen = gameCanvas.GetComponentInChildren<Leaderboard>(true);
+        }
+
+        if (uiManager == null)
+        {
+            uiManager = gameCanvas.GetComponent<UIManager>();
+        }
+
+        if (menuCamera == null)
+        {
+            menuCamera = GameObject.FindWithTag("SceneCamera");
+        }
+    }
+
+    public void PlaySelectedMiniGame(int index)
+    {
+        menuCamera.SetActive(false);
+        uiManager.ShowFreeModeMenu(false);
+        gameCanvas.GetComponentInChildren<UIManager>().HideBackground();
+        PlaySelectedMiniGame(minigameData[index]);
+    }
     public void PlayBallonMiniGame()
     {
         menuCamera.SetActive(false);
-        menuFreeMode.SetActive(false);
-        menuBackground.SetActive(false);
+        uiManager.ShowFreeModeMenu(false);
+        gameCanvas.GetComponentInChildren<UIManager>().HideBackground();
         PlaySelectedMiniGame(minigameData[0]);
     }
 
     public void PlayFlagsMinigame()
     {
         menuCamera.SetActive(false);
-        menuFreeMode.SetActive(false);
-        menuBackground.SetActive(false);
+        uiManager.ShowFreeModeMenu(false);
+        gameCanvas.GetComponentInChildren<UIManager>().HideBackground();
         PlaySelectedMiniGame(minigameData[1]);
     }
 
     public void PlayBoxingMinigame()
     {
         menuCamera.SetActive(false);
-        menuFreeMode.SetActive(false);
-        menuBackground.SetActive(false);
+        uiManager.ShowFreeModeMenu(false);
+        gameCanvas.GetComponentInChildren<UIManager>().HideBackground();
         PlaySelectedMiniGame(minigameData[2]);
     }
 
     public void PlaySimonMinigame()
     {
         menuCamera.SetActive(false);
-        menuFreeMode.SetActive(false);
-        menuBackground.SetActive(false);
+        uiManager.ShowFreeModeMenu(false);
+        gameCanvas.GetComponentInChildren<UIManager>().HideBackground();
         PlaySelectedMiniGame(minigameData[3]);
     }
     

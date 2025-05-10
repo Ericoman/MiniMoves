@@ -53,6 +53,15 @@ public class UIManager : MonoBehaviour
         return minigamedata[indexActual];
     }
 
+    public void ShowFreeModeMenu(bool bShow)
+    {
+        freeModeMenu.SetActive(bShow);
+    }
+    public void HideBackground()
+    {
+         background.gameObject.SetActive(false);
+    }
+    
     public IEnumerator FadeIn()
     {
         float elapsed = 0f;

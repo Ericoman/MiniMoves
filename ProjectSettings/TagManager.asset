@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - Leaderboard
   - GameCanvas
+  - SceneCamera
+  - FreeMode
   layers:
   - Default
   - TransparentFX
