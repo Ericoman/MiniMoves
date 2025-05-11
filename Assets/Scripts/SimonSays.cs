@@ -78,6 +78,7 @@ public class SimonGame : MonoBehaviour
     void CheckPattern(int patternNumber)
     {
         if (!isPlayerTurn) return;
+        if(currentStep >= pattern.Count) return;
         StartCoroutine(InputCooldown(patternNumber));
         if (patternNumber == pattern[currentStep])
         {
@@ -158,6 +159,7 @@ public class SimonGame : MonoBehaviour
         isPlayerTurn = false;
         yield return new WaitForSeconds(1f);
         playerFailText.gameObject.SetActive(false);
+        currentStep = 3;
         pattern.Clear();
         currentDelay = startDelay;
         AddToPattern();
