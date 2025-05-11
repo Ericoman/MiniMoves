@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class InfladorMinigameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class InfladorMinigameManager : MonoBehaviour
     public bool ballInStation = false;
     public int minigamePoints = 5;
     public AudioSource explode, squeak, background;
+    public TMP_Text pointsText;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +28,7 @@ public class InfladorMinigameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        pointsText.text = points.ToString();
     }
 
     public void PumpBall()
