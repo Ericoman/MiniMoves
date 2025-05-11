@@ -26,6 +26,7 @@ public class Leaderboard : MonoBehaviour
     public void Show(bool bShow)
     {
         gameObject.SetActive(bShow);
+        uimanager.background.enabled = true;
         uimanager.uselessCamera.enabled = true;
         
         //
