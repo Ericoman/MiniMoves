@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWaypoint: {fileID: 9010215375350031525}
-  idWaypoint: 2
+  idWaypoint: 1
   moving: 0
   thresholdX: 2
   thresholdY: 1
@@ -941,9 +941,6 @@ MonoBehaviour:
   activatedStimulus: 0
   greatImage: {fileID: 5726795342435180691}
   failImage: {fileID: 679421214509703331}
-  none: {fileID: 0}
-  great: {fileID: 21300000, guid: c11036a8458860149bcb1c56e7743d7a, type: 3}
-  fail: {fileID: 21300000, guid: 19f32e40294de734289769e2200fe610, type: 3}
   checking: 0
   random: 0
   minigamePoints: 5

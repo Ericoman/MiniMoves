@@ -68,6 +68,7 @@ public class FreeModeManager : MonoBehaviour
 
     public void PlaySelectedMiniGame(int index)
     {
+        StartCoroutine(MiniGameManager.Instance.FadeOut(0.1f));
         menuCamera.SetActive(false);
         uiManager.ShowFreeModeMenu(false);
         gameCanvas.GetComponentInChildren<UIManager>().HideBackground();
