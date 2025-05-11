@@ -1,6 +1,4 @@
 using TMPro;
-using UnityEditor;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +34,7 @@ public class Leaderboard : MonoBehaviour
     public void Show(bool bShow)
     {
         gameObject.SetActive(bShow);
+        uimanager.background.gameObject.SetActive(true);
         uimanager.uselessCamera.enabled = true;
         
         //

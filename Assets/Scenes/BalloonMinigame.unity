@@ -324,10 +324,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BallonMinigame
       objectReference: {fileID: 0}
-    - target: {fileID: 1097172289639271379, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.37
-      objectReference: {fileID: 0}
     - target: {fileID: 2664683538758945750, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.63
@@ -367,30 +363,6 @@ PrefabInstance:
     - target: {fileID: 2664683538758945750, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623712546910522117, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.908
-      objectReference: {fileID: 0}
-    - target: {fileID: 4069671725626185427, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873528746699436473, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873528746699436473, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873528746699436473, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 7150742344300448006, guid: 49649dd553ff0c7409a1cdb3e5e6f36f, type: 3}
-      propertyPath: m_TargetTexture
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
