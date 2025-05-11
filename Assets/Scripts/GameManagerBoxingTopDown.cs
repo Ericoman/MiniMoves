@@ -7,7 +7,8 @@ public class GameManagerBoxingTopDown : MonoBehaviour
 {
 
     public GameObject[] stimulus;
-    public Material[] materials;
+    public Material[] materialsGlaseado;
+    public Material[] materialsDonut;
     public GameObject[] waypoint;
     public int activatedStimulus = 0;
     public TextMeshProUGUI resultFeedback;
@@ -55,7 +56,8 @@ public class GameManagerBoxingTopDown : MonoBehaviour
             
             random = Random.Range(0, stimulus.Length);
             CleanMaterials();
-            stimulus[random].gameObject.GetComponent<Renderer>().material = materials[1];
+            stimulus[random].gameObject.GetComponent<Renderer>().material = materialsGlaseado[1];
+            stimulus[random].gameObject.GetComponent<Renderer>().material = materialsDonut[1];
             stimulus[random].GetComponent<Stimulus>().activated = true;
             stimulus[random].GetComponent<Stimulus>().Lighten();
             activatedStimulus = random;
@@ -74,7 +76,8 @@ public class GameManagerBoxingTopDown : MonoBehaviour
                 ChangeFeedback("Fail");
             }
             stimulus[i].GetComponent<Stimulus>().activated = false;
-            stimulus[i].gameObject.GetComponent<Renderer>().material = materials[0];
+            stimulus[i].gameObject.GetComponent<Renderer>().material = materialsGlaseado[0];
+            stimulus[i].gameObject.GetComponent<Renderer>().material = materialsDonut[0];
         }
 
     }
