@@ -43,7 +43,8 @@ public class CharacterMovement : BaseInputManager
 
     private void FlickDetectorOnFlickEvent(Vector3 movement)
     {
-        if (movement.x < 0 && movement.y == 0)
+        if(moving) return;
+        if (movement.x < 0 && movement.y == 0 && movement.z == 0)
         {
             Debug.Log("Muevo menor ");
             if (idWaypoint != GameManagerBoxingTopDown.Instance.stimulus.Length)
@@ -58,7 +59,7 @@ public class CharacterMovement : BaseInputManager
             }         
             return;
         }
-        else if (movement.x > 0 && movement.y == 0)
+        else if (movement.x > 0 && movement.y == 0 && movement.z == 0)
         {
             Debug.Log("Muevo mayor ");
             if (idWaypoint != 0)
@@ -73,6 +74,22 @@ public class CharacterMovement : BaseInputManager
             }
             return;
         }
+        else if (movement.z > 0 && movement.x == 0 && movement.y == 0)
+        {
+            Debug.Log("Golpeo ");
+            bonkPose.SetActive(true);
+            idlePose.SetActive(false);
+            //if (idWaypoint == GameManagerBoxingTopDown.Instance.activatedStimulus)
+            //{
+            //    GameManagerBoxingTopDown.Instance.ChangeFeedback("Good");
+            //}
+            //else
+            //{
+            //   GameManagerBoxingTopDown.Instance.ChangeFeedback("Fail");
+            //}
+            GameManagerBoxingTopDown.Instance.CheckHit(idWaypoint);
+            StartCoroutine(HandleBonk());
+        }
     }
 
     protected override void InputManagerOnMovementInputEvent(Vector3 movement)
@@ -82,43 +99,43 @@ public class CharacterMovement : BaseInputManager
             //Debug.Log(movement);
         }
         
-        Vector3 newInput = Vector3.zero;
-        float sqrMagnitude = movement.sqrMagnitude;
-        if (sqrMagnitude > accelerationThresholdSquared 
-            && lastAcceleration.sqrMagnitude < accelerationThresholdSquared)
-        {
-            if (Time.time - lastTriggerTime > cooldown)
-            {
-                lastTriggerTime = Time.time;
-                newInput = movement;
-                Debug.Log("Pasa el corte: " + movement);
-            }
-        }
-                        
-        lastAcceleration = movement;
-        movement = newInput;
+        // Vector3 newInput = Vector3.zero;
+        // float sqrMagnitude = movement.sqrMagnitude;
+        // if (sqrMagnitude > accelerationThresholdSquared 
+        //     && lastAcceleration.sqrMagnitude < accelerationThresholdSquared)
+        // {
+        //     if (Time.time - lastTriggerTime > cooldown)
+        //     {
+        //         lastTriggerTime = Time.time;
+        //         newInput = movement;
+        //         Debug.Log("Pasa el corte: " + movement);
+        //     }
+        // }
+        //                 
+        // lastAcceleration = movement;
+        // movement = newInput;
 
-        if (!moving)
-        {
-            if(movement.z > thresholdY)
-            {
-                Debug.Log("Golpeo ");
-                bonkPose.SetActive(true);
-                idlePose.SetActive(false);
-                //if (idWaypoint == GameManagerBoxingTopDown.Instance.activatedStimulus)
-                //{
-                //    GameManagerBoxingTopDown.Instance.ChangeFeedback("Good");
-                //}
-                //else
-                //{
-                //   GameManagerBoxingTopDown.Instance.ChangeFeedback("Fail");
-                //}
-                GameManagerBoxingTopDown.Instance.CheckHit(idWaypoint);
-                StartCoroutine(HandleBonk());
- 
-            }
-          
-        }
+        // if (!moving)
+        // {
+        //     if(movement.z > thresholdY)
+        //     {
+        //         Debug.Log("Golpeo ");
+        //         bonkPose.SetActive(true);
+        //         idlePose.SetActive(false);
+        //         //if (idWaypoint == GameManagerBoxingTopDown.Instance.activatedStimulus)
+        //         //{
+        //         //    GameManagerBoxingTopDown.Instance.ChangeFeedback("Good");
+        //         //}
+        //         //else
+        //         //{
+        //         //   GameManagerBoxingTopDown.Instance.ChangeFeedback("Fail");
+        //         //}
+        //         GameManagerBoxingTopDown.Instance.CheckHit(idWaypoint);
+        //         StartCoroutine(HandleBonk());
+        //
+        //     }
+        //   
+        // }
     }
     private IEnumerator HandleBonk()
     {
