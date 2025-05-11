@@ -16,19 +16,43 @@ public class CharacterMovement : BaseInputManager
     [SerializeField] private GameObject idlePose;
     [SerializeField] private float bonkTime = 0.3f;
 
+    
+    private Vector3 lastAcceleration;
+    public float accelerationThreshold = 1f;
+    private float accelerationThresholdSquared;
+    public float cooldown = 0.3f;
+    private float lastTriggerTime = -10f;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
         transform.position = currentWaypoint.transform.position;
+        accelerationThresholdSquared = accelerationThreshold * accelerationThreshold;
     }
 
     protected override void InputManagerOnMovementInputEvent(Vector3 movement)
     {
         if (Mathf.Abs(movement.x) > thresholdX)
         {
-            Debug.Log(movement);
+            //Debug.Log(movement);
         }
+        
+        Vector3 newInput = Vector3.zero;
+        float sqrMagnitude = movement.sqrMagnitude;
+        if (sqrMagnitude > accelerationThresholdSquared 
+            && lastAcceleration.sqrMagnitude < accelerationThresholdSquared)
+        {
+            if (Time.time - lastTriggerTime > cooldown)
+            {
+                lastTriggerTime = Time.time;
+                newInput = movement;
+                Debug.Log("Pasa el corte: " + movement);
+            }
+        }
+                        
+        lastAcceleration = movement;
+        movement = newInput;
 
         if (!moving)
         {
@@ -63,7 +87,7 @@ public class CharacterMovement : BaseInputManager
                 }
                 return;
             }
-            if(movement.z < -thresholdY)
+            if(movement.z > thresholdY)
             {
                 Debug.Log("Golpeo ");
                 bonkPose.SetActive(true);
