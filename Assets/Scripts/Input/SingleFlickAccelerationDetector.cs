@@ -39,7 +39,7 @@ public class SingleFlickAccelerationDetector : BaseInputManager
         }
 
         // Focus only on strong horizontal flicks
-        if (Mathf.Abs(accel.x) > accelThreshold && Mathf.Abs(accel.x) > Mathf.Abs(accel.y))
+        if (Mathf.Abs(accel.x) > accelThreshold && Mathf.Abs(accel.x) > Mathf.Abs(accel.y) && Mathf.Abs(accel.x) > Mathf.Abs(accel.z))
         {
             if (accel.x < 0)
             {
@@ -53,7 +53,7 @@ public class SingleFlickAccelerationDetector : BaseInputManager
             hasDetected = true;
             lastDetectionTime = now;
         }
-        if (Mathf.Abs(accel.y) > accelThreshold && Mathf.Abs(accel.y) > Mathf.Abs(accel.x))
+        if (Mathf.Abs(accel.y) > accelThreshold && Mathf.Abs(accel.y) > Mathf.Abs(accel.x) && Mathf.Abs(accel.y) > Mathf.Abs(accel.z))
         {
             if (accel.y < 0)
             {
@@ -62,6 +62,20 @@ public class SingleFlickAccelerationDetector : BaseInputManager
             else
             {
                 FlickEvent?.Invoke(new Vector3(0, 1, 0));
+            }
+
+            hasDetected = true;
+            lastDetectionTime = now;
+        }
+        if (Mathf.Abs(accel.z) > accelThreshold && Mathf.Abs(accel.z) > Mathf.Abs(accel.x) && Mathf.Abs(accel.z) > Mathf.Abs(accel.y))
+        {
+            if (accel.z < 0)
+            {
+                FlickEvent?.Invoke(new Vector3(0, 0, -1));
+            }
+            else
+            {
+                FlickEvent?.Invoke(new Vector3(0, 0, 1));
             }
 
             hasDetected = true;
