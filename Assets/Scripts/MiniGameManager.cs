@@ -153,6 +153,8 @@ public class MiniGameManager : MonoBehaviour
                 Debug.LogWarning("No unused minigames available to select.");
                 menuCamera.SetActive(true);
                 resultsScreen.Show(true);
+                gameCanvas.GetComponent<UIManager>().leaderboardMusic.Play();
+                gameCanvas.GetComponent<UIManager>().music.Stop();
             }
         }
         else

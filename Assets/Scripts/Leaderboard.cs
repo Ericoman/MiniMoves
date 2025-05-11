@@ -14,8 +14,7 @@ public class Leaderboard : MonoBehaviour
     public void Start()
     {
         uimanager.uselessCamera.enabled = true;
-        uimanager.music.Stop();
-        uimanager.leaderboardMusic.Play();
+        
         if (Random.Range(0, 2) == 0)
         {
             dialogue.text = level1[Random.Range(0, level1.Length)];
@@ -34,6 +33,15 @@ public class Leaderboard : MonoBehaviour
     public void Show(bool bShow)
     {
         gameObject.SetActive(bShow);
+        if (bShow)
+        {
+            uimanager.music.Stop();
+            uimanager.leaderboardMusic.Play();
+            
+        }
+
+        
+        
         uimanager.background.gameObject.SetActive(true);
         uimanager.uselessCamera.enabled = true;
         

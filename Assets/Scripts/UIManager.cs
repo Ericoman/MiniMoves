@@ -161,6 +161,8 @@ public class UIManager : MonoBehaviour
     {
         scoreboard.SetActive(false);
         back.Play();
+        leaderboardMusic.Stop();
+        music.Play();
         selectionMenu.SetActive(false);
         background.gameObject.SetActive(true);
         menu.SetActive(true);
@@ -169,7 +171,8 @@ public class UIManager : MonoBehaviour
     {
         scoreboard.SetActive(false);
         back.Play();
-        
+        leaderboardMusic.Stop();
+        music.Play();
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
         leaderboards.SetActive(false);
