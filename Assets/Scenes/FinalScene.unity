@@ -1763,7 +1763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &912373559
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5639,7 +5639,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d100ee5624d1414d9e88035987e54e6, type: 2}
   miniGameInstance: {fileID: 0}
   gameCanvas: {fileID: 1060640486}
-  minigameDuration: 2
+  minigameDuration: 50
   resultsScreen: {fileID: 2122360915}
   gamePoints: 0
   tutorialSound: {fileID: 1931054320}

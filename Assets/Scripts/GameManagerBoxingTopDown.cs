@@ -7,6 +7,9 @@ public class GameManagerBoxingTopDown : MonoBehaviour
 {
 
     public GameObject[] stimulus;
+    public GameObject[] stimulusOjos;
+    public GameObject[] stimulusVirutas;
+    public GameObject[] stimulusGlaseado;
     public Material[] materialsGlaseado;
     public Material[] materialsDonut;
     public GameObject[] waypoint;
@@ -56,10 +59,24 @@ public class GameManagerBoxingTopDown : MonoBehaviour
             
             random = Random.Range(0, stimulus.Length);
             CleanMaterials();
-            stimulus[random].gameObject.GetComponent<Renderer>().material = materialsGlaseado[1];
             stimulus[random].gameObject.GetComponent<Renderer>().material = materialsDonut[1];
             stimulus[random].GetComponent<Stimulus>().activated = true;
             stimulus[random].GetComponent<Stimulus>().Lighten();
+            activatedStimulus = random;
+
+            stimulusGlaseado[random].gameObject.GetComponent<Renderer>().material = materialsGlaseado[1];
+            stimulusGlaseado[random].GetComponent<Stimulus>().activated = true;
+            stimulusGlaseado[random].GetComponent<Stimulus>().Lighten();
+            activatedStimulus = random;
+            
+            stimulusOjos[random].gameObject.GetComponent<Renderer>().material = materialsDonut[1];
+            stimulusOjos[random].GetComponent<Stimulus>().activated = true;
+            stimulusOjos[random].GetComponent<Stimulus>().Lighten();
+            activatedStimulus = random;
+            
+            stimulusVirutas[random].gameObject.GetComponent<Renderer>().material = materialsGlaseado[1];
+            stimulusVirutas[random].GetComponent<Stimulus>().activated = true;
+            stimulusVirutas[random].GetComponent<Stimulus>().Lighten();
             activatedStimulus = random;
             yield return new WaitForSeconds(2);
         }
@@ -76,8 +93,13 @@ public class GameManagerBoxingTopDown : MonoBehaviour
                 ChangeFeedback("Fail");
             }
             stimulus[i].GetComponent<Stimulus>().activated = false;
-            stimulus[i].gameObject.GetComponent<Renderer>().material = materialsGlaseado[0];
             stimulus[i].gameObject.GetComponent<Renderer>().material = materialsDonut[0];
+            stimulusGlaseado[i].GetComponent<Stimulus>().activated = false;
+            stimulusGlaseado[i].gameObject.GetComponent<Renderer>().material = materialsGlaseado[0];
+            stimulusVirutas[i].GetComponent<Stimulus>().activated = false;
+            stimulusVirutas[i].gameObject.GetComponent<Renderer>().material = materialsGlaseado[0];
+            stimulusOjos[i].GetComponent<Stimulus>().activated = false;
+            stimulusOjos[i].gameObject.GetComponent<Renderer>().material = materialsDonut[0];
         }
 
     }
