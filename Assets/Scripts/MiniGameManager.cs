@@ -24,6 +24,7 @@ public class MiniGameManager : MonoBehaviour
     public AudioSource tutorialSound;
 
     public GameObject menuCamera;
+    public CanvasGroup fadeScreen;
     
     private void Awake()
     {
@@ -72,6 +73,7 @@ public class MiniGameManager : MonoBehaviour
     }
     public void PlaySelectedMiniGame(MinigameData selectedgame)
     {
+        StartCoroutine(FadeOut(1.5f));
         if (selectedgame != null && selectedgame.MiniGamePrefab != null)
         {
             // Destroy any existing minigame instance
@@ -106,6 +108,7 @@ public class MiniGameManager : MonoBehaviour
                 // Instantiate the tutorial panel
                 if (selectedGame.TutorialPanel != null)
                 {
+                    
                     menuCamera.SetActive(true);
                     tutorialSound.Play();
                     GameObject tutorialPanelInstance = Instantiate(selectedGame.TutorialPanel);
@@ -163,7 +166,9 @@ public class MiniGameManager : MonoBehaviour
     {
         // Wait for the specified duration
         yield return new WaitForSeconds(duration);
-
+        
+        StartCoroutine(FadeIn(1.5f));
+        yield return new WaitForSeconds(1.5f);
         // Destroy the current minigame instance
         if (miniGameInstance != null)
         {
@@ -171,7 +176,7 @@ public class MiniGameManager : MonoBehaviour
             miniGameInstance = null;
             Debug.Log("Minigame instance destroyed after " + duration + " seconds.");
         }
-
+        
         // Load the next random minigame
         StartCoroutine(TutorialPanelLogic());
     }
@@ -219,5 +224,26 @@ public class MiniGameManager : MonoBehaviour
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public IEnumerator FadeIn(float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeScreen.alpha = Mathf.Clamp01(elapsedTime / duration);
+            yield return null;
+        }
+    }
     
+    public IEnumerator FadeOut(float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeScreen.alpha = Mathf.Clamp01(1 - elapsedTime / duration);
+            yield return null;
+        }
+    }
 }

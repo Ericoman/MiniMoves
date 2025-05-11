@@ -140,7 +140,7 @@ public class UIManager : MonoBehaviour
         music.Stop();
         click.Play();
         selectionMenu.SetActive(false);
-        background.gameObject.SetActive(true);
+        background.gameObject.SetActive(false);
         uselessCamera.gameObject.SetActive(false);
         minigameManager.LoadMinijuego();
     }
