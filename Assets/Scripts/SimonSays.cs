@@ -17,7 +17,14 @@ public class SimonGame : MonoBehaviour
     public GameObject playerFailText;
 
     [Header("Controles del jugador")]
-    public KeyCode[] inputKeys;     
+    public KeyCode[] inputKeys;
+
+    [SerializeField]
+    private GameObject idlePose;
+    [SerializeField] GameObject idleUp;
+    [SerializeField] GameObject idleLeft;
+    [SerializeField] GameObject idleRight;
+    [SerializeField] GameObject idleDown;
 
     private List<int> pattern = new List<int>();
     private int currentStep = 0;
@@ -58,22 +65,36 @@ public class SimonGame : MonoBehaviour
         {
             if (movement.x < 0)
             {
+                idlePose.SetActive(false);
+                idleRight.SetActive(true);
                 CheckPattern(0);
+                StartCoroutine(WaitPosition());
+
+
             }
             else
             {
+                idlePose.SetActive(false);
+                idleLeft.SetActive(true);
                 CheckPattern(1);
+                StartCoroutine(WaitPosition());
             }
         }
         else if (movement.y !=0 && movement.x == 0)
         {
             if (movement.y < 0)
             {
+                idlePose.SetActive(false);
+                idleUp.SetActive(true);
                 CheckPattern(2);
+                StartCoroutine(WaitPosition());
             }
             else
             {
+                idlePose.SetActive(false);
+                idleDown.SetActive(true);
                 CheckPattern(3);
+                StartCoroutine(WaitPosition());
             }
         }
     }
@@ -191,5 +212,15 @@ public class SimonGame : MonoBehaviour
         {
             flickDetector.FlickEvent -= FlickDetectorOnFlickEvent;
         }
+    }
+
+    IEnumerator WaitPosition()
+    {
+        yield return new WaitForSeconds(0.3f);
+        idlePose.SetActive(true);
+        idleLeft.SetActive(false);
+        idleUp.SetActive(false);
+        idleRight.SetActive(false);
+        idleDown.SetActive(false);
     }
 }
