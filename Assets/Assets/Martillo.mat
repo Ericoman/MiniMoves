@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 7fa6efa8b649f984389e6202c6bba71a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 66536220a9a8b9b478a513cce19900bb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -51,13 +51,15 @@ Material:
     - _blackMaskThreshholdl: 0.1
     - _whiteMaskThreshholdl: 1.06
     m_Colors:
-    - _Color1: {r: 1, g: 0.040880322, b: 0.040880322, a: 0}
-    - _Color2: {r: 0, g: 0.011561394, b: 1, a: 0}
-    - _Color3: {r: 0.09176779, g: 1, b: 0, a: 0}
+    - _Color1: {r: 1, g: 0.9481132, b: 0.9481132, a: 0}
+    - _Color2: {r: 1, g: 0, b: 0.2705884, a: 0}
+    - _Color3: {r: 0, g: 0.6363635, b: 1, a: 1}
     - _Color4: {r: 0, g: 0, b: 0, a: 0}
     - _Color5: {r: 0.4746257, g: 1, b: 0, a: 0}
     - _ColorAO1: {r: 1, g: 1, b: 1, a: 0}
     - _ColorAO2: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3103326877227511755

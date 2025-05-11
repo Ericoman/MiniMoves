@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -23,12 +24,55 @@ public class CharacterMovement : BaseInputManager
     public float cooldown = 0.3f;
     private float lastTriggerTime = -10f;
     
+    [SerializeField]
+    SingleFlickAccelerationDetector flickDetector;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
         transform.position = currentWaypoint.transform.position;
         accelerationThresholdSquared = accelerationThreshold * accelerationThreshold;
+
+        if (flickDetector == null)
+        {
+            flickDetector = GetComponent<SingleFlickAccelerationDetector>();
+        }
+        flickDetector.FlickEvent += FlickDetectorOnFlickEvent;
+    }
+
+    private void FlickDetectorOnFlickEvent(Vector3 movement)
+    {
+        if (movement.x < 0 && movement.y == 0)
+        {
+            Debug.Log("Muevo menor ");
+            if (idWaypoint != GameManagerBoxingTopDown.Instance.stimulus.Length)
+            {
+                idWaypoint++;
+                if (idWaypoint > GameManagerBoxingTopDown.Instance.waypoint.Length - 1)
+                {
+                    idWaypoint = GameManagerBoxingTopDown.Instance.waypoint.Length - 1;
+                }
+                currentWaypoint = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint];
+                moving = true;
+            }         
+            return;
+        }
+        else if (movement.x > 0 && movement.y == 0)
+        {
+            Debug.Log("Muevo mayor ");
+            if (idWaypoint != 0)
+            {
+                idWaypoint--;
+                if (idWaypoint < 0)
+                {
+                    idWaypoint = 0;
+                }
+                currentWaypoint = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint];
+                moving = true;
+            }
+            return;
+        }
     }
 
     protected override void InputManagerOnMovementInputEvent(Vector3 movement)
@@ -56,37 +100,6 @@ public class CharacterMovement : BaseInputManager
 
         if (!moving)
         {
-            
-            if (movement.x < -thresholdX)
-            {
-                Debug.Log("Muevo menor ");
-                if (idWaypoint != GameManagerBoxingTopDown.Instance.stimulus.Length)
-                {
-                    idWaypoint++;
-                    if (idWaypoint > GameManagerBoxingTopDown.Instance.waypoint.Length - 1)
-                    {
-                        idWaypoint = GameManagerBoxingTopDown.Instance.waypoint.Length - 1;
-                    }
-                    currentWaypoint = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint];
-                    moving = true;
-                }         
-                return;
-            }
-            else if (movement.x > thresholdX)
-            {
-                Debug.Log("Muevo mayor ");
-                if (idWaypoint != 0)
-                {
-                    idWaypoint--;
-                    if (idWaypoint < 0)
-                    {
-                        idWaypoint = 0;
-                    }
-                    currentWaypoint = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint];
-                    moving = true;
-                }
-                return;
-            }
             if(movement.z > thresholdY)
             {
                 Debug.Log("Golpeo ");
@@ -138,5 +151,13 @@ public class CharacterMovement : BaseInputManager
         //transform.position = GameManagerBoxingTopDown.Instance.waypoint[idWaypoint].transform.position;
 
 
+    }
+
+    private void OnDestroy()
+    {
+        if (flickDetector != null)
+        {
+            flickDetector.FlickEvent -= FlickDetectorOnFlickEvent;
+        }
     }
 }
