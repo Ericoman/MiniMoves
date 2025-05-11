@@ -67,7 +67,7 @@ public class MovementImitate : BaseInputManager
             }
             else
             {
-                GameManagerImitate.Instance.callCoroutine("Fail");
+                GameManagerImitate.Instance.callCoroutine();
                 yield return new WaitForSeconds(0.6f);
                 posing = false;
             }

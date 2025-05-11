@@ -1,6 +1,4 @@
 using TMPro;
-using UnityEditor;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +7,8 @@ public class Leaderboard : MonoBehaviour
     public TextMeshProUGUI text;
     public TMP_InputField inputfield;
     public UIManager uimanager;
+    public Text dialogue;
+    public string[] level1, level2;
     
 
     public void Start()
@@ -16,6 +16,14 @@ public class Leaderboard : MonoBehaviour
         uimanager.uselessCamera.enabled = true;
         uimanager.music.Stop();
         uimanager.leaderboardMusic.Play();
+        if (Random.Range(0, 2) == 0)
+        {
+            dialogue.text = level1[Random.Range(0, level1.Length)];
+        }
+        else
+        {
+            dialogue.text = level2[Random.Range(0, level1.Length)];
+        }
 
     }
     void Update()

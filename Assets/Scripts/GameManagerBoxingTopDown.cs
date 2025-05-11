@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 using Random = UnityEngine.Random;
 
 public class GameManagerBoxingTopDown : MonoBehaviour
@@ -14,7 +16,8 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     public Material[] materialsDonut;
     public GameObject[] waypoint;
     public int activatedStimulus = 0;
-    public TextMeshProUGUI resultFeedback;
+
+    public Image greatImage, failImage;
     public bool checking = false;
     public int random = 0;
     public int minigamePoints = 5;
@@ -24,7 +27,8 @@ public class GameManagerBoxingTopDown : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        failImage.enabled = false;
+        greatImage.enabled = false;
         //random = Random.Range(0, stimulus.Length);
         StartCoroutine(StartGame());
         
@@ -90,7 +94,7 @@ public class GameManagerBoxingTopDown : MonoBehaviour
             if (stimulus[i].GetComponent<Stimulus>().activated && !stimulus[i].GetComponent<Stimulus>().hit)
             {
                 miss.Play();
-                ChangeFeedback("Fail");
+                ChangeFeedback(false);
             }
             stimulus[i].GetComponent<Stimulus>().activated = false;
             stimulus[i].gameObject.GetComponent<Renderer>().material = materialsDonut[0];
@@ -106,10 +110,32 @@ public class GameManagerBoxingTopDown : MonoBehaviour
 
     
 
-    public void ChangeFeedback(string value)
+    public void ChangeFeedback(bool value)
     {
-        resultFeedback.text = value;
-        Debug.Log(value);
+        StartCoroutine(ChangeText(value));
+        
+    }
+    IEnumerator ChangeText(bool value)
+    {
+        if (value)
+        {
+            
+            greatImage.enabled = true;
+            failImage.enabled = false;
+            yield return new WaitForSeconds(0.9f);
+            greatImage.enabled = false;
+            failImage.enabled = false;
+        }
+        else
+        {
+            
+            greatImage.enabled = false;
+            failImage.enabled = true;
+            yield return new WaitForSeconds(0.9f);
+            greatImage.enabled = false;
+            failImage.enabled = false;
+        }
+
     }
 
     public void CheckHit(int id)
@@ -135,22 +161,22 @@ public class GameManagerBoxingTopDown : MonoBehaviour
         
         if (stimulus[id].GetComponent<Stimulus>().activated)
         {
-            ChangeFeedback("Good");
+            ChangeFeedback(true);
             hit.Play();
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
             CleanMaterials();
         }
         else
         {
-            ChangeFeedback("Fail");
+            ChangeFeedback(false);
             miss.Play();
             MiniGameManager.Instance.RemoveGamePoints(minigamePoints);
             CleanMaterials();
         }
-        yield return null;
+        
         yield return new WaitForSeconds(cooldownTime);
         checking = false;
-        ChangeFeedback("");
+        
         
     }
 
