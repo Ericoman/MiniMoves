@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Leaderboard : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    public InputField inputfield;
+    public TMP_InputField inputfield;
     public UIManager uimanager;
     
 
