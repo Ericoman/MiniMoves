@@ -31,6 +31,10 @@ public class SimonGame : MonoBehaviour
 
     [SerializeField]
     SingleFlickAccelerationDetector flickDetector;
+
+    public AudioSource[] nota;
+    public AudioSource music, hit, miss;
+
     //[SerializeField] private float inputCooldown = 0.6f;
 
     [SerializeField] private int points = 5;
@@ -39,6 +43,7 @@ public class SimonGame : MonoBehaviour
     {
         currentDelay = startDelay;
         AddToPattern();
+        music.Play();
         StartCoroutine(ShowPattern());
         if (flickDetector == null)
         {
@@ -89,12 +94,14 @@ public class SimonGame : MonoBehaviour
             currentStep++;
             if (currentStep >= pattern.Count)
             {
+                hit.Play();
                 playerTurnText.gameObject.SetActive(true);
                 StartCoroutine(NextRound());
             }
         }
         else
         {
+            miss.Play();
             playerFailText.gameObject.SetActive(true);
             playerTurnText.gameObject.SetActive(false);
             ResetGame();
@@ -136,6 +143,7 @@ public class SimonGame : MonoBehaviour
 
     void ActivateButton(int index)
     {
+        nota[index].Play();
         activeButtons[index].SetActive(true);
         normalButtons[index].SetActive(false);
         pillarGemns[index].SetActive(true);
