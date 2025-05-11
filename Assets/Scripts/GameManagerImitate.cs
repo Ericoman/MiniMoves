@@ -8,7 +8,8 @@ public class GameManagerImitate : MonoBehaviour
     [SerializeField] private GameObject banderaIdle;
     public int directionPose=0;
     public bool hasPosed = false;
-    public Text feedback;
+    public Image greatImage, failImage;
+    public Sprite none, great, fail;
     public bool[] turnsbool = new bool[50];
     public int turn;
     public bool posing = false;
@@ -21,6 +22,10 @@ public class GameManagerImitate : MonoBehaviour
     void Start()
     {
         directionPose = 0;
+        greatImage.enabled = false;
+        failImage.enabled = false;
+        
+        
         StartCoroutine(ChangePoses());
         
     }
@@ -65,7 +70,7 @@ public class GameManagerImitate : MonoBehaviour
             if (!turnsbool[turn])
             {
                 missPose.Play();
-                StartCoroutine(ChangeText("Fail"));
+                StartCoroutine(ChangeText(false));
             }
             yield return new WaitForSeconds(Random.Range(1,3));
         }
@@ -79,26 +84,40 @@ public class GameManagerImitate : MonoBehaviour
         if (direction < poses.Length && directionPose==direction)
         {
             hitPose.Play();
-            StartCoroutine(ChangeText("Good"));
+            StartCoroutine(ChangeText(true));
             MiniGameManager.Instance.AddGamePoints(minigamePoints);
         }
         else
         {
             missPose.Play();
-            StartCoroutine(ChangeText("Fail"));
+            StartCoroutine(ChangeText(false));
             MiniGameManager.Instance.RemoveGamePoints(minigamePoints);
         }
     }
 
-    public void callCoroutine(string value)
+    public void callCoroutine()
     {
-        StartCoroutine(ChangeText(value));
+        StartCoroutine(ChangeText(false));
     }
 
-    IEnumerator ChangeText(string value)
+    IEnumerator ChangeText(bool value)
     {
-        feedback.text = value;
-        yield return new WaitForSeconds(0.9f);
-        feedback.text = "";
+        if (value)
+        {
+            greatImage.enabled=true;
+            failImage.enabled = false;
+            yield return new WaitForSeconds(0.6f);
+            greatImage.enabled = false;
+            failImage.enabled = false;
+        }
+        else
+        {
+            greatImage.enabled = false;
+            failImage.enabled = true;
+            yield return new WaitForSeconds(0.6f);
+            greatImage.enabled = false;
+            failImage.enabled = false;
+        }
+        
     }
 }
