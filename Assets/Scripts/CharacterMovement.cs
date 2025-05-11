@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -11,7 +12,10 @@ public class CharacterMovement : BaseInputManager
     private float t = 0;
     [SerializeField] private float thresholdX = 0.5f;
     [SerializeField] private float thresholdY = 0.5f;
-    
+    [SerializeField] private GameObject bonkPose;
+    [SerializeField] private GameObject idlePose;
+    [SerializeField] private float bonkTime = 0.3f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -62,6 +66,8 @@ public class CharacterMovement : BaseInputManager
             if(movement.z < -thresholdY)
             {
                 Debug.Log("Golpeo ");
+                bonkPose.SetActive(true);
+                idlePose.SetActive(false);
                 //if (idWaypoint == GameManagerBoxingTopDown.Instance.activatedStimulus)
                 //{
                 //    GameManagerBoxingTopDown.Instance.ChangeFeedback("Good");
@@ -71,10 +77,20 @@ public class CharacterMovement : BaseInputManager
                 //   GameManagerBoxingTopDown.Instance.ChangeFeedback("Fail");
                 //}
                 GameManagerBoxingTopDown.Instance.CheckHit(idWaypoint);
+                StartCoroutine(HandleBonk());
+ 
             }
           
         }
     }
+    private IEnumerator HandleBonk()
+    {
+        yield return new WaitForSeconds(bonkTime);
+
+        bonkPose.SetActive(false);
+        idlePose.SetActive(true);
+    }
+
 
     // Update is called once per frame
     void Update()
