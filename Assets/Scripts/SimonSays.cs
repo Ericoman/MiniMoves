@@ -10,6 +10,8 @@ public class SimonGame : MonoBehaviour
     public GameObject[] normalButtons;    
     public GameObject[] activeButtons;
 
+    public GameObject[] pillarGemns;
+    public GameObject[] pillarInactive;
     [Header("Textos")]
     public GameObject playerTurnText;
     public GameObject playerFailText;
@@ -92,6 +94,7 @@ public class SimonGame : MonoBehaviour
         else
         {
             playerFailText.gameObject.SetActive(true);
+            playerTurnText.gameObject.SetActive(false);
             ResetGame();
         }
     }
@@ -133,12 +136,16 @@ public class SimonGame : MonoBehaviour
     {
         activeButtons[index].SetActive(true);
         normalButtons[index].SetActive(false);
+        pillarGemns[index].SetActive(true);
+        pillarInactive[index].SetActive(false);
     }
 
     void DeactivateButton(int index)
     {
         activeButtons[index].SetActive(false);
         normalButtons[index].SetActive(true);
+        pillarGemns[index].SetActive(false);
+        pillarInactive[index].SetActive(true);
     }
 
     IEnumerator NextRound()
