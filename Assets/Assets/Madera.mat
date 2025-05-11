@@ -53,13 +53,13 @@ Material:
     m_Colors:
     - _Color1: {r: 0.6698113, g: 0.45017374, b: 0.23064256, a: 0}
     - _Color2: {r: 0.3962264, g: 0.26610568, b: 0.21867213, a: 0}
-    - _Color3: {r: 0.8018868, g: 0.6965497, b: 0.39716092, a: 0}
+    - _Color3: {r: 0.7830189, g: 0.5863153, b: 0.3508811, a: 1}
     - _Color4: {r: 0, g: 0, b: 0, a: 0}
     - _Color5: {r: 0.4746257, g: 1, b: 0, a: 0}
     - _ColorAO1: {r: 1, g: 1, b: 1, a: 0}
     - _ColorAO2: {r: 1, g: 1, b: 1, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 6, g: 6, b: 0, a: 0}
+    - _Tiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3103326877227511755
