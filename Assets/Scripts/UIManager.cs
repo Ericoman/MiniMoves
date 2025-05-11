@@ -120,6 +120,7 @@ public class UIManager : MonoBehaviour
         click.Play();
         
         menu.SetActive(false);
+        background.gameObject.SetActive(true);
         selectionMenu.SetActive(true);
     }
     public void QuitButton()
@@ -139,7 +140,7 @@ public class UIManager : MonoBehaviour
         music.Stop();
         click.Play();
         selectionMenu.SetActive(false);
-        background.enabled = false;
+        background.gameObject.SetActive(true);
         uselessCamera.gameObject.SetActive(false);
         minigameManager.LoadMinijuego();
     }
@@ -161,18 +162,18 @@ public class UIManager : MonoBehaviour
         scoreboard.SetActive(false);
         back.Play();
         selectionMenu.SetActive(false);
-        background.enabled = true;
+        background.gameObject.SetActive(true);
         menu.SetActive(true);
     }
     public void BackToSelectionMenu()
     {
         scoreboard.SetActive(false);
         back.Play();
-        background.enabled = true;
+        
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
         leaderboards.SetActive(false);
-        
+        background.gameObject.SetActive(true);
         selectionMenu.SetActive(true);
     }
     public void PlaySelectedMode()
