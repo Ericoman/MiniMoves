@@ -8,7 +8,7 @@ public class Paralax : MonoBehaviour
     [Header("Puntos de Spawn")]
     public Transform[] puntosDeSpawn;
 
-    [Header("Parámetros de Escala")]
+    [Header("Parï¿½metros de Escala")]
     public Vector2 rangoDeEscala = new Vector2(0.5f, 2f);
 
     [Header("Velocidad")]
@@ -17,7 +17,7 @@ public class Paralax : MonoBehaviour
     [Header("Frecuencia de Spawns")]
     public float tiempoEntreSpawns = 1f;
 
-    [Header("Rotación")]
+    [Header("Rotaciï¿½n")]
     public Vector3 rotacionFija = Vector3.zero;
 
     private float tiempoSiguienteSpawn;
@@ -43,12 +43,13 @@ public class Paralax : MonoBehaviour
         rotacion = Quaternion.Euler(rotacionFija);
 
         GameObject instancia = Instantiate(prefab, puntoSpawn.position, rotacion);
+        instancia.transform.SetParent(gameObject.transform);
 
         float escala = Random.Range(rangoDeEscala.x, rangoDeEscala.y);
         instancia.transform.localScale = Vector3.one * escala;
 
-        // Añadir movimiento al objeto instanciado
+        // Aï¿½adir movimiento al objeto instanciado
         ParalaxObj mover = instancia.AddComponent<ParalaxObj>();
-        mover.velocidad = velocidadBase * escala; // Más grande = más rápido
+        mover.velocidad = velocidadBase * escala; // Mï¿½s grande = mï¿½s rï¿½pido
     }
 }

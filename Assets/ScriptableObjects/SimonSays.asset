@@ -15,3 +15,4 @@ MonoBehaviour:
   minigameID: SimonSays
   miniGamePrefab: {fileID: 2993397003935317779, guid: 1fc2fd1f801e6de4481d34b59303588f, type: 3}
   tutorialPanel: {fileID: 3498594972370910775, guid: 43e79e76b73faaf4f8a34fcec189781e, type: 3}
+  minigameDuration: 30

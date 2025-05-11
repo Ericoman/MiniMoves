@@ -12,8 +12,10 @@ public class MinigameData : ScriptableObject
     [SerializeField] private string minigameID = "GameID";
     [SerializeField] private GameObject miniGamePrefab;
     [SerializeField] private GameObject tutorialPanel;
+    [SerializeField] private float minigameDuration = 0f;
 
     public string MinigameID => minigameID;
     public GameObject MiniGamePrefab => miniGamePrefab;
     public GameObject TutorialPanel => tutorialPanel;
+    public float MinigameDuration => minigameDuration;
 }
