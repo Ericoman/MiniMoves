@@ -72,4 +72,9 @@ public class DeviceInputManager : MonoBehaviour
         }
         
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
