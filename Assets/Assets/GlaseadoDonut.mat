@@ -58,6 +58,8 @@ Material:
     - _Color5: {r: 0.4746257, g: 1, b: 0, a: 0}
     - _ColorAO1: {r: 1, g: 1, b: 1, a: 0}
     - _ColorAO2: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3103326877227511755
