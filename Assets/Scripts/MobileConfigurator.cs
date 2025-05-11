@@ -14,16 +14,16 @@ public class MobileConfigurator : MonoBehaviour
     private void Start()
     {
         ipInput.text = inputSender.targetIP;
-        ipText.text = inputSender.targetIP;
+        ipText.text = "Target IP: " + inputSender.targetIP;
         portInput.text = inputSender.targetPort.ToString();
-        portText.text = inputSender.targetPort.ToString();
+        portText.text = "Target Port: " + inputSender.targetPort;
     }
 
     public void ChangeIp()
     {
         if (ipInput)
         {
-            ipText.text = ipInput.text;
+            ipText.text = "Target IP: " + ipInput.text;
             inputSender.ChangeTargetIP(ipInput.text);
         }
     }
@@ -32,7 +32,7 @@ public class MobileConfigurator : MonoBehaviour
     {
         if (portInput.text != null && portInput.text != "")
         {
-            portText.text = portInput.text;
+            portText.text = "Target Port: " + portInput.text;
             inputSender.ChangeTargetPort(portInput.text);
         }
     }
