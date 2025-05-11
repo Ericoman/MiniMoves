@@ -33,6 +33,8 @@ public class SimonGame : MonoBehaviour
     SingleFlickAccelerationDetector flickDetector;
     //[SerializeField] private float inputCooldown = 0.6f;
 
+    [SerializeField] private int points = 5;
+
     void Start()
     {
         currentDelay = startDelay;
@@ -150,6 +152,7 @@ public class SimonGame : MonoBehaviour
 
     IEnumerator NextRound()
     {
+        MiniGameManager.Instance.AddGamePoints((int)(points*pattern.Count*0.5f));
         yield return new WaitForSeconds(1f);
         playerTurnText.gameObject.SetActive(false);
         AddToPattern();
@@ -163,6 +166,7 @@ public class SimonGame : MonoBehaviour
 
     IEnumerator ResetGameCoroutine()
     {
+        MiniGameManager.Instance.RemoveGamePoints(points);
         isPlayerTurn = false;
         yield return new WaitForSeconds(1f);
         playerFailText.gameObject.SetActive(false);

@@ -121,8 +121,15 @@ public class FreeModeManager : MonoBehaviour
             miniGameInstance = Instantiate(selectedgame.MiniGamePrefab);
             Debug.Log("Minijuego cargado: " + selectedgame.MinigameID);
 
-            // Start a 30-second timer to destroy this instance and load the next one
-            StartCoroutine(MinigameTimer(minigameDuration)); // Pass a duration of 30 seconds
+            if (selectedgame.MinigameDuration > 0f)
+            {
+                StartCoroutine(MinigameTimer(selectedgame.MinigameDuration));
+            }
+            else
+            {
+                // Start a 30-second timer to destroy this instance and load the next one
+                StartCoroutine(MinigameTimer(minigameDuration)); // Pass a duration of 30 seconds
+            }
         }
         else
         {
