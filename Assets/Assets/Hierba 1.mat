@@ -65,11 +65,13 @@ Material:
     - _whiteMaskThreshholdl: 0.94
     m_Colors:
     - _Color1: {r: 0.25947937, g: 0.9056604, b: 0.19651109, a: 0}
-    - _Color2: {r: 0.2865086, g: 0.36477977, b: 0.22368568, a: 0}
+    - _Color2: {r: 0.6353112, g: 0.6886792, b: 0.31510323, a: 0}
     - _Color3: {r: 0, g: 0.13547564, b: 1, a: 0}
     - _Color4: {r: 1, g: 0.89462495, b: 0, a: 0}
     - _Color5: {r: 0.4746257, g: 1, b: 0, a: 0}
     - _ColorAO1: {r: 1, g: 1, b: 1, a: 0}
     - _ColorAO2: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

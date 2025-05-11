@@ -51,9 +51,9 @@ Material:
     - _blackMaskThreshholdl: 0.1
     - _whiteMaskThreshholdl: 1.06
     m_Colors:
-    - _Color1: {r: 1, g: 0.040880322, b: 0.040880322, a: 0}
-    - _Color2: {r: 0, g: 0.011561394, b: 1, a: 0}
-    - _Color3: {r: 0.09176779, g: 1, b: 0, a: 0}
+    - _Color1: {r: 0.8944789, g: 1, b: 0.41176474, a: 0}
+    - _Color2: {r: 0.8654791, g: 1, b: 0.6556604, a: 0}
+    - _Color3: {r: 0.3803922, g: 0.8656648, b: 1, a: 0}
     - _Color4: {r: 0, g: 0, b: 0, a: 0}
     - _Color5: {r: 0.4746257, g: 1, b: 0, a: 0}
     - _ColorAO1: {r: 1, g: 1, b: 1, a: 0}

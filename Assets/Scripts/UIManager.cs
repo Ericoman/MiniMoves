@@ -12,10 +12,10 @@ public class UIManager : MonoBehaviour
     public MinigameData[] minigamedata;
     private int indexActual = 0;
     public Text scoreText;
-    
+    public AudioSource music, logoMusic, leaderboardMusic;
     //public Text freeModeGame;
     public Camera uselessCamera;
-
+    public bool logobool = true;
     public float fadeInTime = 0.1f;
     public float fadeOutTime = 0.1f;
     public AudioSource click, back;
@@ -25,13 +25,18 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         // Opcional: iniciar con fade in
+
         StartCoroutine(FadeIn());
         ActualizarTexto();
         minigameManager = MiniGameManager.Instance;
         //prevgame.onClick.AddListener(() => CambiarMinijuego(-1));
         //nextgame.onClick.AddListener(() => CambiarMinijuego(1));
     }
-    
+    public void Update()
+    {
+        
+    }
+
 
     public void CambiarMinijuego(int direccion)
     {
@@ -68,12 +73,11 @@ public class UIManager : MonoBehaviour
          background.gameObject.SetActive(false);
     }
     
-    public void ShowLeaderboards(string name, int score)
-    {
-
-    }
+    
     public IEnumerator FadeIn()
     {
+        logoMusic.Play();
+        
         float elapsed = 0f;
         Color color = titleImage.color;
         color.a = 0f;
@@ -105,7 +109,9 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(fadeOutTime);
+        logobool = false;
         menu.SetActive(true);
+        music.Play();
     }
 
     public void PlayButton()
@@ -129,6 +135,7 @@ public class UIManager : MonoBehaviour
 
     public void ChallengeButton()
     {
+        music.Stop();
         click.Play();
         selectionMenu.SetActive(false);
         background.enabled = false;
@@ -175,9 +182,15 @@ public class UIManager : MonoBehaviour
     }
     public void showLeaderboards()
     {
+        music.Stop();
+        leaderboardMusic.Play();
         selectionMenu.SetActive(false);
         scoreboard.SetActive(true);
         showScores();
+    }
+    public void StopMusic()
+    {
+        music.Stop();
     }
 
     public void showScores()
@@ -201,6 +214,10 @@ public class UIManager : MonoBehaviour
         scoreboard.SetActive(true);
         // Cargar tabla actual
         ScoreList scoreList = LoadScores();
+        if (name == "")
+        {
+            name = "Default";
+        }
 
         // Agregar nueva entrada
         ScoreEntry newEntry = new ScoreEntry { playerName = name, score = score };
