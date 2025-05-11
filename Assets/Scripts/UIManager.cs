@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
@@ -11,7 +12,7 @@ public class UIManager : MonoBehaviour
     public MiniGameManager minigameManager;
     public MinigameData[] minigamedata;
     private int indexActual = 0;
-    public Text scoreText;
+    public TMP_Text scoreText;
     public AudioSource music, logoMusic, leaderboardMusic;
     //public Text freeModeGame;
     public Camera uselessCamera;
@@ -157,7 +158,7 @@ public class UIManager : MonoBehaviour
     }
     public void BackToMainMenu()
     {
-        scoreboard.SetActive(true);
+        scoreboard.SetActive(false);
         back.Play();
         selectionMenu.SetActive(false);
         background.enabled = true;
@@ -167,6 +168,7 @@ public class UIManager : MonoBehaviour
     {
         scoreboard.SetActive(false);
         back.Play();
+        background.enabled = true;
         freeModeMenu.SetActive(false);
         selectSkinmenu.SetActive(false);
         leaderboards.SetActive(false);
