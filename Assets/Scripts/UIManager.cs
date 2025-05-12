@@ -166,6 +166,7 @@ public class UIManager : MonoBehaviour
         selectionMenu.SetActive(false);
         background.gameObject.SetActive(true);
         menu.SetActive(true);
+        minigameManager.ResetGamePoints();
     }
     public void BackToSelectionMenu()
     {
@@ -178,6 +179,7 @@ public class UIManager : MonoBehaviour
         leaderboards.SetActive(false);
         background.gameObject.SetActive(true);
         selectionMenu.SetActive(true);
+        minigameManager.ResetGamePoints();
     }
     public void PlaySelectedMode()
     {

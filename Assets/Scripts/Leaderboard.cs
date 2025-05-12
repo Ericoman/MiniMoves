@@ -57,6 +57,7 @@ public class Leaderboard : MonoBehaviour
         }
         
         uimanager.AddNewScore(inputfield.text, MiniGameManager.Instance.gamePoints);
+        MiniGameManager.Instance.ResetGamePoints();;
     }
 
     public void OnRestartGame()

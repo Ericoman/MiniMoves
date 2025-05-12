@@ -226,11 +226,15 @@ public class MiniGameManager : MonoBehaviour
     {
         gamePoints-= pointsToRemove;
     }
-    
+
+    public void ResetGamePoints()
+    {
+        gamePoints = 0;
+    }
     public void RestartGame()
     {
         usedMinigames.Clear();
-        
+        ResetGamePoints();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
